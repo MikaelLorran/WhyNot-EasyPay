@@ -1,0 +1,37 @@
+{
+	"name": "whynot-easypay",
+	"version": "1.0.0",
+	"description": "Sistema desenvolvido para o PI (Projeto Interdisciplinar) do 2º semestre de Análise e Desenolvimento e Sistemas da Fatec Indaiatuba.",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"build": "tsc",
+		"start": "npm run build && node dist/server.js",
+		"dev": "tsx watch src/server.ts",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/MikaelLorran/WhyNot-EasyPay.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/MikaelLorran/WhyNot-EasyPay/issues"
+	},
+	"homepage": "https://github.com/MikaelLorran/WhyNot-EasyPay#readme",
+	"devDependencies": {
+		"@types/express": "^5.0.5",
+		"@types/node": "^24.10.1",
+		"prisma": "^6.19.0",
+		"ts-node": "^10.9.2",
+		"tsx": "^4.20.6",
+		"typescript": "^5.9.3"
+	},
+	"dependencies": {
+		"@prisma/client": "^6.19.0",
+		"dotenv": "^17.2.3",
+		"express": "^5.1.0"
+	}
+}
