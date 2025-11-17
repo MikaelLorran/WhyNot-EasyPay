@@ -6,7 +6,7 @@
 
 generator client {
   provider = "prisma-client"
-  output   = "../generated/prisma"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -19,13 +19,13 @@ model Aluno {
   nome      String
   email     String   @unique
   cpf       String   @unique
-  boletos     Boletos[]
+  boletos     Boleto[]
 }
 
-model Boletos {
+model Boleto {
   id        Int      @id @default(autoincrement())
   titulo    String
-  valor     Decimal  @db.Decimal(10, 2)
+  valor     Float
   vencimento DateTime
   dataPagamento DateTime?
   finalizado Boolean  @default(false)
