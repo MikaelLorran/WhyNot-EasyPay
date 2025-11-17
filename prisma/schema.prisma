@@ -14,7 +14,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Cliente {
+model Aluno {
   id        Int      @id @default(autoincrement())
   nome      String
   email     String   @unique
@@ -24,8 +24,11 @@ model Cliente {
 
 model Boletos {
   id        Int      @id @default(autoincrement())
-  titulo     String
+  titulo    String
+  valor     Decimal  @db.Decimal(10, 2)
+  vencimento DateTime
+  dataPagamento DateTime?
   finalizado Boolean  @default(false)
-  cliente      Cliente?    @relation(fields: [clienteId], references: [id])
-  clienteId    Int?
+  aluno      Aluno?    @relation(fields: [alunoId], references: [id])
+  alunoId    Int?
 }
