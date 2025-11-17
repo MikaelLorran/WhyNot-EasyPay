@@ -20,3 +20,11 @@ export function getBoletoById(id: number) {
 export function pagarBoleto(id: number) {
   return boletoRepository.marcarComoPago(id, new Date())
 }
+
+export async function deletarBoleto(id: number) {
+  return boletoRepository.remove(id)
+}
+
+export async function getBoletosByAlunoId(id: number) {
+  return boletoRepository.findByAlunoId(id)
+}

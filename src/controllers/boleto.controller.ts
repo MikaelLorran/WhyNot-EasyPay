@@ -34,3 +34,13 @@ export async function pagarBoleto(req: express.Request, res: express.Response) {
   const boleto = await boletoService.pagarBoleto(Number(id))
   res.status(200).json(boleto)
 }
+
+export async function deletarBoleto(req: express.Request, res: express.Response) {
+  await boletoService.deletarBoleto(Number(req.params.id))
+  res.status(204).send()
+}
+
+export async function getBoletosByAlunoId(req: express.Request, res: express.Response) {
+  const boletos = await boletoService.getBoletosByAlunoId(Number(req.params.id))
+  res.status(200).json(boletos)
+}

@@ -31,7 +31,14 @@ export function marcarComoPago(id: number, dataPagamento: Date) {
     }
   })
 }
+export async function remove(id: number) {
+  return Boleto.delete({ where: { id } })
+}
 
+// Boletos de um aluno específico
+export async function findByAlunoId(alunoId: number) {
+  return Boleto.findMany({ where: { alunoId } })
+}
 /* 
   id        Int      @id @default(autoincrement())
   titulo    String
