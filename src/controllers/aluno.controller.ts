@@ -2,8 +2,8 @@ import type express from "express";
 import * as alunoService from "../services/aluno.service.js";
 
 export async function criarAluno(req: express.Request, res: express.Response) {
-	const { nome, email, cpf } = req.body;
-	const aluno = await alunoService.criarAluno({ nome, email, cpf });
+	const { nome, email, cpf, telefone } = req.body;
+	const aluno = await alunoService.criarAluno({ nome, email, cpf, telefone });
 	res.status(201).json(aluno);
 }
 
@@ -41,11 +41,12 @@ export async function getAlunoByCpf(
 
 export async function updateAluno(req: express.Request, res: express.Response) {
 	const { id } = req.params;
-	const { nome, email, cpf } = req.body;
+	const { nome, email, cpf, telefone } = req.body;
 	const aluno = await alunoService.updateAluno(Number(id), {
 		nome,
 		email,
 		cpf,
+		telefone,
 	});
 	res.status(200).json(aluno);
 }

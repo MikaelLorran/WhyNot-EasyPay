@@ -1,6 +1,11 @@
 import Aluno from "../entities/aluno.entity.js";
 
-export function create(data: { nome: string; email: string; cpf: string }) {
+export function create(data: {
+	nome: string;
+	email: string;
+	cpf: string;
+	telefone: string;
+}) {
 	return Aluno.create({ data });
 }
 
@@ -26,7 +31,7 @@ export function findbyCpf(cpf: string) {
 
 export function updateAluno(
 	id: number,
-	data: { nome: string; email: string; cpf: string }
+	data: { nome: string; email: string; cpf: string; telefone: string }
 ) {
 	return Aluno.update({
 		where: { id },

@@ -674,7 +674,8 @@ export const AlunoScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
   email: 'email',
-  cpf: 'cpf'
+  cpf: 'cpf',
+  telefone: 'telefone'
 } as const
 
 export type AlunoScalarFieldEnum = (typeof AlunoScalarFieldEnum)[keyof typeof AlunoScalarFieldEnum]

@@ -1,6 +1,11 @@
 import * as alunoRepository from "../repositories/aluno.repository.js";
 
-export function criarAluno(data: { nome: string; email: string; cpf: string }) {
+export function criarAluno(data: {
+	nome: string;
+	email: string;
+	cpf: string;
+	telefone: string;
+}) {
 	return alunoRepository.create(data);
 }
 
@@ -18,7 +23,7 @@ export function getAlunoByCpf(cpf: string) {
 
 export async function updateAluno(
 	id: number,
-	data: { nome: string; email: string; cpf: string }
+	data: { nome: string; email: string; cpf: string; telefone: string }
 ) {
 	const aluno = await alunoRepository.findById(id);
 

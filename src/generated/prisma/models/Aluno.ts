@@ -39,6 +39,7 @@ export type AlunoMinAggregateOutputType = {
   nome: string | null
   email: string | null
   cpf: string | null
+  telefone: string | null
 }
 
 export type AlunoMaxAggregateOutputType = {
@@ -46,6 +47,7 @@ export type AlunoMaxAggregateOutputType = {
   nome: string | null
   email: string | null
   cpf: string | null
+  telefone: string | null
 }
 
 export type AlunoCountAggregateOutputType = {
@@ -53,6 +55,7 @@ export type AlunoCountAggregateOutputType = {
   nome: number
   email: number
   cpf: number
+  telefone: number
   _all: number
 }
 
@@ -70,6 +73,7 @@ export type AlunoMinAggregateInputType = {
   nome?: true
   email?: true
   cpf?: true
+  telefone?: true
 }
 
 export type AlunoMaxAggregateInputType = {
@@ -77,6 +81,7 @@ export type AlunoMaxAggregateInputType = {
   nome?: true
   email?: true
   cpf?: true
+  telefone?: true
 }
 
 export type AlunoCountAggregateInputType = {
@@ -84,6 +89,7 @@ export type AlunoCountAggregateInputType = {
   nome?: true
   email?: true
   cpf?: true
+  telefone?: true
   _all?: true
 }
 
@@ -178,6 +184,7 @@ export type AlunoGroupByOutputType = {
   nome: string
   email: string
   cpf: string
+  telefone: string | null
   _count: AlunoCountAggregateOutputType | null
   _avg: AlunoAvgAggregateOutputType | null
   _sum: AlunoSumAggregateOutputType | null
@@ -208,6 +215,7 @@ export type AlunoWhereInput = {
   nome?: Prisma.StringFilter<"Aluno"> | string
   email?: Prisma.StringFilter<"Aluno"> | string
   cpf?: Prisma.StringFilter<"Aluno"> | string
+  telefone?: Prisma.StringNullableFilter<"Aluno"> | string | null
   boletos?: Prisma.BoletoListRelationFilter
 }
 
@@ -216,6 +224,7 @@ export type AlunoOrderByWithRelationInput = {
   nome?: Prisma.SortOrder
   email?: Prisma.SortOrder
   cpf?: Prisma.SortOrder
+  telefone?: Prisma.SortOrderInput | Prisma.SortOrder
   boletos?: Prisma.BoletoOrderByRelationAggregateInput
 }
 
@@ -227,6 +236,7 @@ export type AlunoWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.AlunoWhereInput[]
   NOT?: Prisma.AlunoWhereInput | Prisma.AlunoWhereInput[]
   nome?: Prisma.StringFilter<"Aluno"> | string
+  telefone?: Prisma.StringNullableFilter<"Aluno"> | string | null
   boletos?: Prisma.BoletoListRelationFilter
 }, "id" | "email" | "cpf">
 
@@ -235,6 +245,7 @@ export type AlunoOrderByWithAggregationInput = {
   nome?: Prisma.SortOrder
   email?: Prisma.SortOrder
   cpf?: Prisma.SortOrder
+  telefone?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.AlunoCountOrderByAggregateInput
   _avg?: Prisma.AlunoAvgOrderByAggregateInput
   _max?: Prisma.AlunoMaxOrderByAggregateInput
@@ -250,12 +261,14 @@ export type AlunoScalarWhereWithAggregatesInput = {
   nome?: Prisma.StringWithAggregatesFilter<"Aluno"> | string
   email?: Prisma.StringWithAggregatesFilter<"Aluno"> | string
   cpf?: Prisma.StringWithAggregatesFilter<"Aluno"> | string
+  telefone?: Prisma.StringNullableWithAggregatesFilter<"Aluno"> | string | null
 }
 
 export type AlunoCreateInput = {
   nome: string
   email: string
   cpf: string
+  telefone?: string | null
   boletos?: Prisma.BoletoCreateNestedManyWithoutAlunoInput
 }
 
@@ -264,6 +277,7 @@ export type AlunoUncheckedCreateInput = {
   nome: string
   email: string
   cpf: string
+  telefone?: string | null
   boletos?: Prisma.BoletoUncheckedCreateNestedManyWithoutAlunoInput
 }
 
@@ -271,6 +285,7 @@ export type AlunoUpdateInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   boletos?: Prisma.BoletoUpdateManyWithoutAlunoNestedInput
 }
 
@@ -279,6 +294,7 @@ export type AlunoUncheckedUpdateInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   boletos?: Prisma.BoletoUncheckedUpdateManyWithoutAlunoNestedInput
 }
 
@@ -287,12 +303,14 @@ export type AlunoCreateManyInput = {
   nome: string
   email: string
   cpf: string
+  telefone?: string | null
 }
 
 export type AlunoUpdateManyMutationInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type AlunoUncheckedUpdateManyInput = {
@@ -300,6 +318,7 @@ export type AlunoUncheckedUpdateManyInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type AlunoCountOrderByAggregateInput = {
@@ -307,6 +326,7 @@ export type AlunoCountOrderByAggregateInput = {
   nome?: Prisma.SortOrder
   email?: Prisma.SortOrder
   cpf?: Prisma.SortOrder
+  telefone?: Prisma.SortOrder
 }
 
 export type AlunoAvgOrderByAggregateInput = {
@@ -318,6 +338,7 @@ export type AlunoMaxOrderByAggregateInput = {
   nome?: Prisma.SortOrder
   email?: Prisma.SortOrder
   cpf?: Prisma.SortOrder
+  telefone?: Prisma.SortOrder
 }
 
 export type AlunoMinOrderByAggregateInput = {
@@ -325,6 +346,7 @@ export type AlunoMinOrderByAggregateInput = {
   nome?: Prisma.SortOrder
   email?: Prisma.SortOrder
   cpf?: Prisma.SortOrder
+  telefone?: Prisma.SortOrder
 }
 
 export type AlunoSumOrderByAggregateInput = {
@@ -338,6 +360,10 @@ export type AlunoNullableScalarRelationFilter = {
 
 export type StringFieldUpdateOperationsInput = {
   set?: string
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
 }
 
 export type IntFieldUpdateOperationsInput = {
@@ -368,6 +394,7 @@ export type AlunoCreateWithoutBoletosInput = {
   nome: string
   email: string
   cpf: string
+  telefone?: string | null
 }
 
 export type AlunoUncheckedCreateWithoutBoletosInput = {
@@ -375,6 +402,7 @@ export type AlunoUncheckedCreateWithoutBoletosInput = {
   nome: string
   email: string
   cpf: string
+  telefone?: string | null
 }
 
 export type AlunoCreateOrConnectWithoutBoletosInput = {
@@ -397,6 +425,7 @@ export type AlunoUpdateWithoutBoletosInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type AlunoUncheckedUpdateWithoutBoletosInput = {
@@ -404,6 +433,7 @@ export type AlunoUncheckedUpdateWithoutBoletosInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -442,6 +472,7 @@ export type AlunoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   nome?: boolean
   email?: boolean
   cpf?: boolean
+  telefone?: boolean
   boletos?: boolean | Prisma.Aluno$boletosArgs<ExtArgs>
   _count?: boolean | Prisma.AlunoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["aluno"]>
@@ -451,6 +482,7 @@ export type AlunoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   nome?: boolean
   email?: boolean
   cpf?: boolean
+  telefone?: boolean
 }, ExtArgs["result"]["aluno"]>
 
 export type AlunoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -458,6 +490,7 @@ export type AlunoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   nome?: boolean
   email?: boolean
   cpf?: boolean
+  telefone?: boolean
 }, ExtArgs["result"]["aluno"]>
 
 export type AlunoSelectScalar = {
@@ -465,9 +498,10 @@ export type AlunoSelectScalar = {
   nome?: boolean
   email?: boolean
   cpf?: boolean
+  telefone?: boolean
 }
 
-export type AlunoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "email" | "cpf", ExtArgs["result"]["aluno"]>
+export type AlunoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "email" | "cpf" | "telefone", ExtArgs["result"]["aluno"]>
 export type AlunoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   boletos?: boolean | Prisma.Aluno$boletosArgs<ExtArgs>
   _count?: boolean | Prisma.AlunoCountOutputTypeDefaultArgs<ExtArgs>
@@ -485,6 +519,7 @@ export type $AlunoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     nome: string
     email: string
     cpf: string
+    telefone: string | null
   }, ExtArgs["result"]["aluno"]>
   composites: {}
 }
@@ -913,6 +948,7 @@ export interface AlunoFieldRefs {
   readonly nome: Prisma.FieldRef<"Aluno", 'String'>
   readonly email: Prisma.FieldRef<"Aluno", 'String'>
   readonly cpf: Prisma.FieldRef<"Aluno", 'String'>
+  readonly telefone: Prisma.FieldRef<"Aluno", 'String'>
 }
     
 
