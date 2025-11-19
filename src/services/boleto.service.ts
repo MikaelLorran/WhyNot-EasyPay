@@ -34,9 +34,6 @@ export async function updateBoleto(
 	id: number,
 	data: {
 		titulo: string;
-		valor: number;
-		vencimento: Date;
-		alunoId: number;
 	}
 ) {
 	const boleto = await boletoRepository.findById(id);

@@ -36,9 +36,6 @@ export function updateAluno(
 	id: number,
 	data: {
 		titulo: string;
-		valor: number;
-		vencimento: Date;
-		alunoId: number;
 	}
 ) {
 	return Boleto.update({

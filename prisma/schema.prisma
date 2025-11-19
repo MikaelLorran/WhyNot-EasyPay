@@ -31,7 +31,7 @@ model Boleto {
   dataPagamento DateTime?
   finalizado Boolean  @default(false)
   aluno      Aluno?    @relation(fields: [alunoId], references: [id])
-  alunoId    Int?
+  alunoId    Int
 }
 
 model Usuario {

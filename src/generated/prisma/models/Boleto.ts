@@ -206,7 +206,7 @@ export type BoletoGroupByOutputType = {
   vencimento: Date
   dataPagamento: Date | null
   finalizado: boolean
-  alunoId: number | null
+  alunoId: number
   _count: BoletoCountAggregateOutputType | null
   _avg: BoletoAvgAggregateOutputType | null
   _sum: BoletoSumAggregateOutputType | null
@@ -239,7 +239,7 @@ export type BoletoWhereInput = {
   vencimento?: Prisma.DateTimeFilter<"Boleto"> | Date | string
   dataPagamento?: Prisma.DateTimeNullableFilter<"Boleto"> | Date | string | null
   finalizado?: Prisma.BoolFilter<"Boleto"> | boolean
-  alunoId?: Prisma.IntNullableFilter<"Boleto"> | number | null
+  alunoId?: Prisma.IntFilter<"Boleto"> | number
   aluno?: Prisma.XOR<Prisma.AlunoNullableScalarRelationFilter, Prisma.AlunoWhereInput> | null
 }
 
@@ -250,7 +250,7 @@ export type BoletoOrderByWithRelationInput = {
   vencimento?: Prisma.SortOrder
   dataPagamento?: Prisma.SortOrderInput | Prisma.SortOrder
   finalizado?: Prisma.SortOrder
-  alunoId?: Prisma.SortOrderInput | Prisma.SortOrder
+  alunoId?: Prisma.SortOrder
   aluno?: Prisma.AlunoOrderByWithRelationInput
 }
 
@@ -264,7 +264,7 @@ export type BoletoWhereUniqueInput = Prisma.AtLeast<{
   vencimento?: Prisma.DateTimeFilter<"Boleto"> | Date | string
   dataPagamento?: Prisma.DateTimeNullableFilter<"Boleto"> | Date | string | null
   finalizado?: Prisma.BoolFilter<"Boleto"> | boolean
-  alunoId?: Prisma.IntNullableFilter<"Boleto"> | number | null
+  alunoId?: Prisma.IntFilter<"Boleto"> | number
   aluno?: Prisma.XOR<Prisma.AlunoNullableScalarRelationFilter, Prisma.AlunoWhereInput> | null
 }, "id">
 
@@ -275,7 +275,7 @@ export type BoletoOrderByWithAggregationInput = {
   vencimento?: Prisma.SortOrder
   dataPagamento?: Prisma.SortOrderInput | Prisma.SortOrder
   finalizado?: Prisma.SortOrder
-  alunoId?: Prisma.SortOrderInput | Prisma.SortOrder
+  alunoId?: Prisma.SortOrder
   _count?: Prisma.BoletoCountOrderByAggregateInput
   _avg?: Prisma.BoletoAvgOrderByAggregateInput
   _max?: Prisma.BoletoMaxOrderByAggregateInput
@@ -293,7 +293,7 @@ export type BoletoScalarWhereWithAggregatesInput = {
   vencimento?: Prisma.DateTimeWithAggregatesFilter<"Boleto"> | Date | string
   dataPagamento?: Prisma.DateTimeNullableWithAggregatesFilter<"Boleto"> | Date | string | null
   finalizado?: Prisma.BoolWithAggregatesFilter<"Boleto"> | boolean
-  alunoId?: Prisma.IntNullableWithAggregatesFilter<"Boleto"> | number | null
+  alunoId?: Prisma.IntWithAggregatesFilter<"Boleto"> | number
 }
 
 export type BoletoCreateInput = {
@@ -312,7 +312,7 @@ export type BoletoUncheckedCreateInput = {
   vencimento: Date | string
   dataPagamento?: Date | string | null
   finalizado?: boolean
-  alunoId?: number | null
+  alunoId: number
 }
 
 export type BoletoUpdateInput = {
@@ -331,7 +331,7 @@ export type BoletoUncheckedUpdateInput = {
   vencimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataPagamento?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   finalizado?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  alunoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  alunoId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type BoletoCreateManyInput = {
@@ -341,7 +341,7 @@ export type BoletoCreateManyInput = {
   vencimento: Date | string
   dataPagamento?: Date | string | null
   finalizado?: boolean
-  alunoId?: number | null
+  alunoId: number
 }
 
 export type BoletoUpdateManyMutationInput = {
@@ -359,7 +359,7 @@ export type BoletoUncheckedUpdateManyInput = {
   vencimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dataPagamento?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   finalizado?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  alunoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  alunoId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type BoletoListRelationFilter = {
@@ -476,14 +476,6 @@ export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
 
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type BoletoCreateWithoutAlunoInput = {
   titulo: string
   valor: number
@@ -536,7 +528,7 @@ export type BoletoScalarWhereInput = {
   vencimento?: Prisma.DateTimeFilter<"Boleto"> | Date | string
   dataPagamento?: Prisma.DateTimeNullableFilter<"Boleto"> | Date | string | null
   finalizado?: Prisma.BoolFilter<"Boleto"> | boolean
-  alunoId?: Prisma.IntNullableFilter<"Boleto"> | number | null
+  alunoId?: Prisma.IntFilter<"Boleto"> | number
 }
 
 export type BoletoCreateManyAlunoInput = {
@@ -642,7 +634,7 @@ export type $BoletoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     vencimento: Date
     dataPagamento: Date | null
     finalizado: boolean
-    alunoId: number | null
+    alunoId: number
   }, ExtArgs["result"]["boleto"]>
   composites: {}
 }
