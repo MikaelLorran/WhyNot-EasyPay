@@ -32,3 +32,9 @@ model Boleto {
   aluno      Aluno?    @relation(fields: [alunoId], references: [id])
   alunoId    Int?
 }
+
+model Usuario {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+}

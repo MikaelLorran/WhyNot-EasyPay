@@ -27,3 +27,8 @@ export type Aluno = Prisma.AlunoModel
  * 
  */
 export type Boleto = Prisma.BoletoModel
+/**
+ * Model Usuario
+ * 
+ */
+export type Usuario = Prisma.UsuarioModel
