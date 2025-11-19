@@ -15,3 +15,25 @@ export function getUsuarioById(id: number) {
 export function getUsuarioByUsername(username: string) {
 	return usuarioRepository.findbyUsername(username);
 }
+
+export async function updateUsuario(
+	id: number,
+	data: { username: string; password: string }
+) {
+	const usuario = await usuarioRepository.findById(id);
+
+	if (!usuario) {
+		throw new Error("Usuário não encontrado");
+	}
+
+	return usuarioRepository.updateUsuario(id, data);
+}
+
+export async function deleteUsuario(id: number) {
+	const usuario = await usuarioRepository.findById(id);
+
+	if (!usuario) {
+		throw new Error("Usuário não encontrado");
+	}
+	return usuarioRepository.deleteUsuario(id);
+}

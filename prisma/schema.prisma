@@ -19,6 +19,7 @@ model Aluno {
   nome      String
   email     String   @unique
   cpf       String   @unique
+  telefone  String
   boletos     Boleto[]
 }
 

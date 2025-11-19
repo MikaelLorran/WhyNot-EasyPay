@@ -1,43 +1,59 @@
-import Boleto from "../entities/boleto.entity.js"
+import Boleto from "../entities/boleto.entity.js";
 
 export function create(data: {
-  titulo: string
-  valor: number
-  vencimento: Date
-  alunoId: number
+	titulo: string;
+	valor: number;
+	vencimento: Date;
+	alunoId: number;
 }) {
-  return Boleto.create({ data })
+	return Boleto.create({ data });
 }
 
 export function findAll() {
-  return Boleto.findMany({
-    include: { aluno: true }
-  })
+	return Boleto.findMany({
+		include: { aluno: true },
+	});
 }
 
 export function findById(id: number) {
-  return Boleto.findUnique({
-    where: { id },
-    include: { aluno: true }
-  })
+	return Boleto.findUnique({
+		where: { id },
+		include: { aluno: true },
+	});
 }
 
 export function marcarComoPago(id: number, dataPagamento: Date) {
-  return Boleto.update({
-    where: { id },
-    data: {
-      finalizado: true,
-      dataPagamento
-    }
-  })
+	return Boleto.update({
+		where: { id },
+		data: {
+			finalizado: true,
+			dataPagamento,
+		},
+	});
 }
-export async function remove(id: number) {
-  return Boleto.delete({ where: { id } })
+
+export function updateAluno(
+	id: number,
+	data: {
+		titulo: string;
+		valor: number;
+		vencimento: Date;
+		alunoId: number;
+	}
+) {
+	return Boleto.update({
+		where: { id },
+		data,
+	});
+}
+
+export async function deleteBoleto(id: number) {
+	return Boleto.delete({ where: { id } });
 }
 
 // Boletos de um aluno específico
 export async function findByAlunoId(alunoId: number) {
-  return Boleto.findMany({ where: { alunoId } })
+	return Boleto.findMany({ where: { alunoId } });
 }
 /* 
   id        Int      @id @default(autoincrement())

@@ -15,3 +15,19 @@ export function findById(id: number) {
 export function findbyUsername(username: string) {
 	return Usuario.findUnique({ where: { username } });
 }
+
+export function updateUsuario(
+	id: number,
+	data: { username: string; password: string }
+) {
+	return Usuario.update({
+		where: { id },
+		data,
+	});
+}
+
+export function deleteUsuario(id: number) {
+	return Usuario.delete({
+		where: { id },
+	});
+}

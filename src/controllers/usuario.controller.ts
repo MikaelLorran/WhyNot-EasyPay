@@ -43,3 +43,25 @@ export async function getUsuarioByUsername(
 
 	res.status(200).json(usuario);
 }
+
+export async function updateUsuario(
+	req: express.Request,
+	res: express.Response
+) {
+	const { id } = req.params;
+	const { username, password } = req.body;
+	const usuario = await usuarioService.updateUsuario(Number(id), {
+		username,
+		password,
+	});
+	res.status(200).json(usuario);
+}
+
+export async function deleteUsuario(
+	req: express.Request,
+	res: express.Response
+) {
+	const { id } = req.params;
+	await usuarioService.deleteUsuario(Number(id));
+	res.status(204).send();
+}

@@ -1,46 +1,75 @@
-import type express from "express"
-import * as boletoService from "../services/boleto.service.js"
+import type express from "express";
+import * as boletoService from "../services/boleto.service.js";
 
 export async function criarBoleto(req: express.Request, res: express.Response) {
-  const { titulo, valor, vencimento, alunoId } = req.body
+	const { titulo, valor, vencimento, alunoId } = req.body;
 
-  const boleto = await boletoService.criarBoleto({
-    titulo,
-    valor,
-    vencimento: new Date(vencimento),
-    alunoId
-  })
+	const boleto = await boletoService.criarBoleto({
+		titulo,
+		valor,
+		vencimento: new Date(vencimento),
+		alunoId,
+	});
 
-  res.status(201).json(boleto)
+	res.status(201).json(boleto);
 }
 
-export async function getAllBoletos(req: express.Request, res: express.Response) {
-  const boletos = await boletoService.getAllBoletos()
-  res.status(200).json(boletos)
+export async function getAllBoletos(
+	req: express.Request,
+	res: express.Response
+) {
+	const boletos = await boletoService.getAllBoletos();
+	res.status(200).json(boletos);
 }
 
-export async function getBoletoById(req: express.Request, res: express.Response) {
-  const { id } = req.params
-  const boleto = await boletoService.getBoletoById(Number(id))
+export async function getBoletoById(
+	req: express.Request,
+	res: express.Response
+) {
+	const { id } = req.params;
+	const boleto = await boletoService.getBoletoById(Number(id));
 
-  if (!boleto)
-    return res.status(404).json({ message: "Boleto não encontrado" })
+	if (!boleto)
+		return res.status(404).json({ message: "Boleto não encontrado" });
 
-  res.status(200).json(boleto)
+	res.status(200).json(boleto);
 }
 
 export async function pagarBoleto(req: express.Request, res: express.Response) {
-  const { id } = req.params
-  const boleto = await boletoService.pagarBoleto(Number(id))
-  res.status(200).json(boleto)
+	const { id } = req.params;
+	const boleto = await boletoService.pagarBoleto(Number(id));
+	res.status(200).json(boleto);
 }
 
-export async function deletarBoleto(req: express.Request, res: express.Response) {
-  await boletoService.deletarBoleto(Number(req.params.id))
-  res.status(204).send()
+export async function updateBoleto(
+	req: express.Request,
+	res: express.Response
+) {
+	const { id } = req.params;
+	const { titulo, valor, vencimento, alunoId } = req.body;
+	const boleto = await boletoService.updateBoleto(Number(id), {
+		titulo,
+		valor,
+		vencimento,
+		alunoId,
+	});
+	res.status(200).json(boleto);
 }
 
-export async function getBoletosByAlunoId(req: express.Request, res: express.Response) {
-  const boletos = await boletoService.getBoletosByAlunoId(Number(req.params.id))
-  res.status(200).json(boletos)
+export async function deleteBoleto(
+	req: express.Request,
+	res: express.Response
+) {
+	await boletoService.deleteBoleto(Number(req.params.id));
+	res.status(204).send();
+}
+
+export async function getBoletosByAlunoId(
+	req: express.Request,
+	res: express.Response
+) {
+	const boletos = await boletoService.getBoletosByAlunoId(
+		Number(req.params.id)
+	);
+	res.status(200).json(boletos);
 }
