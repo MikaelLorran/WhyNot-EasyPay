@@ -3,6 +3,7 @@ import * as dotenv from "dotenv";
 import * as boletoService from "../services/boleto.service.js";
 import * as emailService from "../services/email.service.js";
 import * as alunoService from "../services/aluno.service.js";
+import * as whatsappService from "../services/whatsapp.service.js";
 
 dotenv.config();
 
@@ -23,12 +24,11 @@ export async function criarBoleto(req: express.Request, res: express.Response) {
 
 	res.status(201).json(boleto);
 
-	// Enviar e-mail de notificação (exemplo)
 	if (boleto) {
 		const emailOptions = {
 			to: aluno.email,
 			subject: "Seu boleto WhyNot-EasyPay gerado",
-			html: `<h2>Olá ${aluno.nome},<h2></br> <p>O boleto com titulo"${
+			html: `<h2>Olá ${aluno.nome},</h2></br> <p>O boleto com titulo "${
 				boleto.titulo
 			}" foi gerado hoje</p></br> <p>Valor do boleto: R$${boleto.valor.toFixed(
 				2
@@ -40,6 +40,25 @@ export async function criarBoleto(req: express.Request, res: express.Response) {
 			await emailService.sendEmail(emailOptions);
 		} catch (error) {
 			console.error("O programa falhou ao enviar o e-mail:", error);
+		}
+
+		if (aluno.telefone) {
+			const whatsappMessage = `Olá ${aluno.nome}, seu boleto com título "${
+				boleto.titulo
+			}" foi gerado hoje. Valor: R$${boleto.valor.toFixed(
+				2
+			)}. Vencimento em: ${boleto.vencimento.toLocaleDateString("pt-Br")}.`;
+			try {
+				await whatsappService.sendWhatsAppMessage(
+					aluno.telefone,
+					whatsappMessage.toString()
+				);
+			} catch (error) {
+				console.error(
+					"O programa falhou ao enviar a mensagem WhatsApp:",
+					error
+				);
+			}
 		}
 	}
 }
