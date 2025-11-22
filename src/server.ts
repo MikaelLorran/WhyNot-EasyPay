@@ -1,8 +1,11 @@
 import "dotenv/config";
 import express from "express";
+import * as cronSchedule from "./infrastructure/cronSchedule.infrastucture.js";
 import alunoRoutes from "./routes/alunos.routes.js";
 import boletoRoutes from "./routes/boleto.routes.js";
 import usuarioRoutes from "./routes/usuario.route.js";
+
+cronSchedule.scheduleBoletoBeforeExpirationCheck();
 
 const app = express();
 app.use(express.json());

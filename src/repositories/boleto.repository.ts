@@ -62,3 +62,15 @@ export async function findByAlunoId(alunoId: number) {
   aluno      Aluno?    @relation(fields: [alunoId], references: [id])
   alunoId    Int?
   */
+
+export async function findOverdueBoletos(currentDate: Date) {
+	const threeDaysAfter = new Date(currentDate);
+	threeDaysAfter.setDate(threeDaysAfter.getDate() + 3);
+	return Boleto.findMany({
+		where: {
+			vencimento: { gte: currentDate, lte: threeDaysAfter },
+			finalizado: false,
+		},
+		include: { aluno: true },
+	});
+}

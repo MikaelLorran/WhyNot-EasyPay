@@ -27,8 +27,8 @@ export async function criarBoleto(req: express.Request, res: express.Response) {
 	if (boleto) {
 		const emailOptions = {
 			to: aluno.email,
-			subject: "Seu boleto WhyNot-EasyPay gerado",
-			html: `<h2>Olá ${aluno.nome},</h2></br> <p>O boleto com titulo "${
+			subject: "Seu boleto WhyNot-EasyPay foi gerado",
+			html: `<h3>Olá ${aluno.nome},</h3></br> <p>O boleto com titulo "${
 				boleto.titulo
 			}" foi gerado hoje</p></br> <p>Valor do boleto: R$${boleto.valor.toFixed(
 				2
