@@ -43,16 +43,29 @@ export async function criarBoleto(req: express.Request, res: express.Response) {
 		}
 
 		if (aluno.telefone) {
-			const whatsappMessage = `Olá ${aluno.nome}, seu boleto com título "${
-				boleto.titulo
-			}" foi gerado hoje. Valor: R$${boleto.valor.toFixed(
-				2
-			)}. Vencimento em: ${boleto.vencimento.toLocaleDateString("pt-Br")}.`;
+			const whatsappMessage = {
+				to: aluno.telefone,
+				template: {
+					name: "boleto_criado",
+					language: { code: "pt_BR" },
+					components: [
+						{
+							type: "body",
+							parameters: [
+								{ type: "text", text: aluno.nome },
+								{ type: "text", text: boleto.valor.toFixed(2) },
+								{
+									type: "text",
+									text: boleto.vencimento.toLocaleDateString("pt-Br"),
+								},
+							],
+						},
+					],
+				},
+			};
+
 			try {
-				await whatsappService.sendWhatsAppMessage(
-					aluno.telefone,
-					whatsappMessage.toString()
-				);
+				await whatsappService.sendWhatsAppMessage(whatsappMessage);
 			} catch (error) {
 				console.error(
 					"O programa falhou ao enviar a mensagem WhatsApp:",
