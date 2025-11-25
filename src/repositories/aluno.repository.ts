@@ -1,4 +1,9 @@
 import Aluno from "../entities/aluno.entity.js";
+import { PrismaClient } from '../generated/prisma/client.js';
+
+const prisma = new PrismaClient();
+
+export default prisma;
 
 export function create(data: {
 	nome: string;
@@ -29,14 +34,25 @@ export function findbyCpf(cpf: string) {
 	});
 }
 
+type UpdateAlunoData = Partial<{ 
+    nome: string; 
+    email: string; 
+    cpf: string; 
+    telefone: string; 
+}>;
+
 export function updateAluno(
-	id: number,
-	data: { nome: string; email: string; cpf: string; telefone: string }
+    id: number,
+    data: UpdateAlunoData 
 ) {
-	return Aluno.update({
-		where: { id },
-		data,
-	});
+    if (Object.keys(data).length === 0) {
+        throw new Error("No data provided for update.");
+    }
+    
+    return prisma.aluno.update({
+        where: { id: id },
+        data,
+    });
 }
 
 export function deleteAluno(id: number) {
