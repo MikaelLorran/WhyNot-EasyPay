@@ -30,7 +30,7 @@ export async function deleteBoleto(id: number) {
 	const boleto = await boletoRepository.findById(id);
 
 	if (!boleto) {
-		throw new Error("Boleto não encontrado");
+		throw new Error("Boleto não encontrado!");
 	}
 	return boletoRepository.deleteBoleto(id);
 }
@@ -44,7 +44,7 @@ export async function updateBoleto(
 	const boleto = await boletoRepository.findById(id);
 
 	if (!boleto) {
-		throw new Error("Boleto não encontrado");
+		throw new Error("Boleto não encontrado!");
 	}
 
 	return boletoRepository.updateAluno(id, data);
@@ -80,7 +80,7 @@ export async function sendBeforeExpirationMessage() {
 
 		const emailOptions = {
 			to: aluno.email,
-			subject: "Seu boleto WhyNot-EasyPay está prestes a vencer",
+			subject: "Seu boleto WhyNot-EasyPay está prestes a vencer!",
 			html: `<h2>Olá ${
 				aluno.nome
 			},</h2></br> <p>Estamos passando para lembrar que seu boleto com titulo "${

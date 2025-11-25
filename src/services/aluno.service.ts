@@ -28,7 +28,7 @@ export async function updateAluno(
 	const aluno = await alunoRepository.findById(id);
 
 	if (!aluno) {
-		throw new Error("Aluno não encontrado");
+		throw new Error("Aluno não encontrado!");
 	}
 
 	return alunoRepository.updateAluno(id, data);
@@ -38,7 +38,7 @@ export async function deleteAluno(id: number) {
 	const aluno = await alunoRepository.findById(id);
 
 	if (!aluno) {
-		throw new Error("Aluno não encontrado");
+		throw new Error("Aluno não encontrado!");
 	}
 	return alunoRepository.deleteAluno(id);
 }
