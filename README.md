@@ -35,7 +35,7 @@ Como executar:
    PORT=3000 ou outra porta disponível
    EMAIL_USER= E-mail responsável pelos envios
    EMAIL_PASS= Sua senha gerada pelo provedor
-   WA_ACCESS_TOKEN= Seu token gerado no Meta for Developers
+   WA_TOKEN= Seu token gerado no Meta for Developers
    WA_PHONE_ID= ID do telefone (Pode ser a versão de teste do Meta)
 
    ```
