@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Not? Institute - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+            min-height: 100vh;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            color: #5f7d7a;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            font-size: 1.25rem;
+            font-weight: 400;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            color: #5f7d7a;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-description {
+            color: #6b7280;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .management-section {
+            margin-top: 3rem;
+        }
+
+        .section-title {
+            color: #5f7d7a;
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .management-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .management-card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .management-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .management-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .management-title {
+            color: #5f7d7a;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            color: #9ca3af;
+            font-size: 0.875rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 1024px) {
+            .management-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .management-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card-icon {
+                font-size: 3rem;
+            }
+
+            .card-title {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Why Not? Institute</h1>
+            <p class="subtitle">Sistema de Gerenciamento Acadêmico</p>
+        </div>
+
+        <div class="cards-grid">
+            <a href="Cadastro de Usuários.html" class="card" onclick="navigate('cadastro-usuarios'); return false;">
+                <div class="card-icon">👥</div>
+                <h2 class="card-title">Cadastro de Usuários</h2>
+                <p class="card-description">Registre novos alunos no sistema com todas as informações necessárias</p>
+            </a>
+
+            <a href="Cadastro de Boletos.html" class="card" onclick="navigate('cadastro-boletos'); return false;">
+                <div class="card-icon">📄</div>
+                <h2 class="card-title">Cadastro de Boletos</h2>
+                <p class="card-description">Gerencie boletos de pagamento e anexe comprovantes</p>
+            </a>
+        </div>
+
+        <div class="management-section">
+            <h3 class="section-title">Controle e Gerenciamento</h3>
+            <div class="management-grid">
+                <a href="Controle de Alunos.html" class="management-card" onclick="navigate('controle-alunos'); return false;">
+                    <div class="management-icon">🎓</div>
+                    <h3 class="management-title">Controle de Alunos</h3>
+                </a>
+
+                <a href="Controle de Pagamentos.html" class="management-card" onclick="navigate('controle-pagamentos'); return false;">
+                    <div class="management-icon">💳</div>
+                    <h3 class="management-title">Controle de Pagamentos</h3>
+                </a>
+
+                <a href="#" class="management-card" onclick="navigate('relatorios'); return false;">
+                    <div class="management-icon">📊</div>
+                    <h3 class="management-title">Relatório (PowerBI)</h3>
+                </a>
+            </div>
+        </div>
+
+        <footer>
+            © 2025 Why Not? Institute. Todos os direitos reservados.
+        </footer>
+    </div>
+
+    <script>
+        function navigate(page) {
+            
+            const pages = {
+                'cadastro-usuarios': 'Cadastro de Usuários',
+                'cadastro-boletos': 'Cadastro de Boletos',
+                'controle-alunos': 'Controle de Alunos',
+                'controle-pagamentos': 'Controle de Pagamentos',
+                'relatorios': 'Relatórios'
+            };
+
+            alert('Navegando para: ' + pages[page]);
+           
+        }
+    </script>
+</body>
+</html>
