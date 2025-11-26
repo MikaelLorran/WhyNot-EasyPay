@@ -46,7 +46,7 @@ export function updateAluno(
     data: UpdateAlunoData 
 ) {
     if (Object.keys(data).length === 0) {
-        throw new Error("No data provided for update.");
+        throw new Error("Por favor, insira os dados para atualizar.");
     }
     
     return prisma.aluno.update({
