@@ -25,6 +25,7 @@
 		"@types/express": "^5.0.5",
 		"@types/node": "^24.10.1",
 		"@types/nodemailer": "^7.0.4",
+		"@types/qrcode-terminal": "^0.12.2",
 		"@types/twilio": "^3.19.2",
 		"prisma": "^6.19.0",
 		"ts-node": "^10.9.2",
@@ -34,10 +35,13 @@
 	"dependencies": {
 		"@prisma/client": "^6.19.0",
 		"@types/node-cron": "^3.0.11",
+		"@whiskeysockets/baileys": "^7.0.0-rc.9",
 		"axios": "^1.13.2",
 		"dotenv": "^17.2.3",
 		"express": "^5.1.0",
 		"node-cron": "^4.2.1",
-		"nodemailer": "^7.0.10"
+		"nodemailer": "^7.0.10",
+		"pino": "^10.1.0",
+		"qrcode-terminal": "^0.12.0"
 	}
 }

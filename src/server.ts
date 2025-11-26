@@ -4,7 +4,9 @@ import * as cronSchedule from "./infrastructure/cronSchedule.infrastucture.js";
 import alunoRoutes from "./routes/alunos.routes.js";
 import boletoRoutes from "./routes/boleto.routes.js";
 import usuarioRoutes from "./routes/usuario.route.js";
+import * as WhatsApp from "./services/whatsapp.service.js"
 
+WhatsApp.connectToWhatsApp();
 cronSchedule.scheduleBoletoBeforeExpirationCheck();
 
 const app = express();

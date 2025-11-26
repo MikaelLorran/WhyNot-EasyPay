@@ -98,29 +98,15 @@ export async function sendBeforeExpirationMessage() {
 		}
 
 		if (aluno.telefone) {
-			const whatsappMessage = {
-				to: aluno.telefone,
-				template: {
-					name: "lembrete_boleto",
-					language: { code: "pt_BR" },
-					components: [
-						{
-							type: "body",
-							parameters: [
-								{ type: "text", text: aluno.nome },
-								{ type: "text", text: boleto.valor.toFixed(2) },
-								{
-									type: "text",
-									text: boleto.vencimento.toLocaleDateString("pt-Br"),
-								},
-							],
-						},
-					],
-				},
+			const contentText = {
+				text: `Olá ${aluno.nome}, passando para lembrar que seu boleto com titulo "${boleto.titulo}" está prestes a vencer. Valor do boleto: R$${boleto.valor.toFixed(
+					2
+				)}. Vencimento em: ${boleto.vencimento.toLocaleDateString(
+					"pt-Br"
+				)}.` 
 			};
-
 			try {
-				await whatsappService.sendWhatsAppMessage(whatsappMessage);
+				await whatsappService.sendMessage(aluno.telefone, contentText);
 			} catch (error) {
 				console.error(
 					"O programa falhou ao enviar a mensagem WhatsApp:",

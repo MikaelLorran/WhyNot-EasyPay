@@ -7,7 +7,7 @@ dotenv.config();
 const prisma = new PrismaClient();
 
 export function scheduleBoletoBeforeExpirationCheck() {
-	const cronExpression = "35 1 * * *"; //Todo dia as 01:40 AM
+	const cronExpression = "4 22 * * *"; //Todo dia as 22:04AM
 
 	cron.schedule(cronExpression, async () => {
 		console.log(
