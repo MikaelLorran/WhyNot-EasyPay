@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Pagamento</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+            min-height: 100vh;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        h1 {
+            color: #5f7d7a;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .control-card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        .filters {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            color: #6b7280;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.2s;
+            font-family: inherit;
+            background: white;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #9ca3af;
+            box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.1);
+        }
+
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%236b7280'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1.5rem;
+            padding-right: 2.5rem;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #f9fafb;
+        }
+
+        th {
+            text-align: left;
+            padding: 1rem;
+            color: #6b7280;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        td {
+            padding: 1rem;
+            color: #374151;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        tbody tr {
+            transition: background 0.2s;
+        }
+
+        tbody tr:hover {
+            background: #f9fafb;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .status-pendente {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-atraso {
+            background: #fecaca;
+            color: #991b1b;
+        }
+
+        .status-pago {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-action {
+            width: 2rem;
+            height: 2rem;
+            border: none;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .btn-edit {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .btn-edit:hover {
+            background: #fde68a;
+        }
+
+        .btn-delete {
+            background: #fecaca;
+            color: #991b1b;
+        }
+
+        .btn-delete:hover {
+            background: #fca5a5;
+        }
+
+        .btn-check {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .btn-check:hover {
+            background: #a7f3d0;
+        }
+
+        .btn-back {
+            margin-top: 2rem;
+            background: #c4cbc8;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-back:hover {
+            background: #9ca3af;
+        }
+
+        .btn-back svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: currentColor;
+        }
+
+        footer {
+            text-align: center;
+            color: #9ca3af;
+            font-size: 0.875rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .filters {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .table-container {
+                overflow-x: scroll;
+            }
+
+            table {
+                min-width: 800px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Controle de pagamento</h1>
+        
+        <div class="control-card">
+            <div class="filters">
+                <div class="filter-group">
+                    <label>🔍 Buscar boleto</label>
+                    <input type="text" id="searchBoleto" placeholder="Digite CPF/CNPJ ou nome...">
+                </div>
+
+                <div class="filter-group">
+                    <label>Status</label>
+                    <select id="statusFilter">
+                        <option value="pendentes">Pendentes</option>
+                        <option value="pagos">Pagos</option>
+                        <option value="atrasados">Em atraso</option>
+                        <option value="todos">Todos</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome do pagador</th>
+                            <th>CPF/CNPJ</th>
+                            <th>Valor</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <tr>
+                            <td>Giovanne Luiz</td>
+                            <td>123.456.789-10</td>
+                            <td>R$ 150,00</td>
+                            <td><span class="status-badge status-pendente">Pendente</span></td>
+                            <td>
+                                <div class="actions">
+                                    <button class="btn-action btn-edit" onclick="editPayment('Giovanne Luiz')" title="Editar">✏️</button>
+                                    <button class="btn-action btn-delete" onclick="deletePayment('Giovanne Luiz')" title="Excluir">🗑️</button>
+                                    <button class="btn-action btn-check" onclick="confirmPayment('Giovanne Luiz')" title="Confirmar pagamento">✓</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Felipe Guimarães</td>
+                            <td>123.456.789-10</td>
+                            <td>R$ 200,00</td>
+                            <td><span class="status-badge status-atraso">Em atraso</span></td>
+                            <td>
+                                <div class="actions">
+                                    <button class="btn-action btn-edit" onclick="editPayment('Felipe Guimarães')" title="Editar">✏️</button>
+                                    <button class="btn-action btn-delete" onclick="deletePayment('Felipe Guimarães')" title="Excluir">🗑️</button>
+                                    <button class="btn-action btn-check" onclick="confirmPayment('Felipe Guimarães')" title="Confirmar pagamento">✓</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mateus de Barros</td>
+                            <td>123.456.789-10</td>
+                            <td>R$ 300,00</td>
+                            <td><span class="status-badge status-pago">Pago</span></td>
+                            <td>
+                                <div class="actions">
+                                    <button class="btn-action btn-edit" onclick="editPayment('Mateus de Barros')" title="Editar">✏️</button>
+                                    <button class="btn-action btn-delete" onclick="deletePayment('Mateus de Barros')" title="Excluir">🗑️</button>
+                                    <button class="btn-action btn-check" onclick="confirmPayment('Mateus de Barros')" title="Confirmar pagamento">✓</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <button class="btn-back" onclick="goBack()">
+            <svg viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+        </button>
+
+        <footer>
+            © 2025 Why Not? Institute. Todos os direitos reservados.
+        </footer>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchBoleto');
+        const statusFilter = document.getElementById('statusFilter');
+        const tableBody = document.getElementById('tableBody');
+
+        searchInput.addEventListener('input', filterTable);
+        statusFilter.addEventListener('change', filterTable);
+
+        function filterTable() {
+            const searchValue = searchInput.value.toLowerCase();
+            const statusValue = statusFilter.value.toLowerCase();
+            const rows = tableBody.getElementsByTagName('tr');
+
+            for (let row of rows) {
+                const name = row.cells[0].textContent.toLowerCase();
+                const cpf = row.cells[1].textContent.toLowerCase();
+                const statusBadge = row.querySelector('.status-badge');
+                const status = statusBadge.classList.contains('status-pendente') ? 'pendentes' :
+                              statusBadge.classList.contains('status-atraso') ? 'atrasados' : 'pagos';
+
+                const matchesSearch = name.includes(searchValue) || cpf.includes(searchValue);
+                const matchesStatus = statusValue === 'todos' || status === statusValue;
+
+                row.style.display = matchesSearch && matchesStatus ? '' : 'none';
+            }
+        }
+
+        function editPayment(name) {
+            alert('Editando pagamento de: ' + name);
+        }
+
+        function deletePayment(name) {
+            if (confirm('Deseja realmente excluir o pagamento de ' + name + '?')) {
+                alert('Pagamento excluído!');
+            }
+        }
+
+        function confirmPayment(name) {
+            if (confirm('Confirmar pagamento de ' + name + '?')) {
+                alert('Pagamento confirmado!');
+            }
+        }
+
+        function goBack() {
+            alert('Voltando à página anterior...');
+        }
+    </script>
+</body>
+</html>
