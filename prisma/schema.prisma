@@ -17,7 +17,7 @@ datasource db {
 model Aluno {
   id        Int      @id @default(autoincrement())
   nome      String
-  email     String   @unique
+  email     String
   cpf       String   @unique
   telefone  String ?
   boletos     Boleto[]

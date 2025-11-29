@@ -11,7 +11,7 @@ export default function Home() {
 			</div>
 
 			<div className="cards-grid">
-				<a onClick={() => navigate("/usuarios")} className="card">
+				<a onClick={() => navigate("/cadastroalunos")} className="card">
 					<div className="card-icon">👥</div>
 					<h2 className="card-title">Cadastro de Usuários</h2>
 					<p className="card-description">
@@ -37,7 +37,10 @@ export default function Home() {
 						<h3 className="management-title">Controle de Alunos</h3>
 					</a>
 
-					<a onClick={() => navigate("/controleboletos")} className="management-card">
+					<a
+						onClick={() => navigate("/controleboletos")}
+						className="management-card"
+					>
 						<div className="management-icon">💳</div>
 						<h3 className="management-title">Controle de Pagamentos</h3>
 					</a>

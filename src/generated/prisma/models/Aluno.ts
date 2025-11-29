@@ -230,15 +230,15 @@ export type AlunoOrderByWithRelationInput = {
 
 export type AlunoWhereUniqueInput = Prisma.AtLeast<{
   id?: number
-  email?: string
   cpf?: string
   AND?: Prisma.AlunoWhereInput | Prisma.AlunoWhereInput[]
   OR?: Prisma.AlunoWhereInput[]
   NOT?: Prisma.AlunoWhereInput | Prisma.AlunoWhereInput[]
   nome?: Prisma.StringFilter<"Aluno"> | string
+  email?: Prisma.StringFilter<"Aluno"> | string
   telefone?: Prisma.StringNullableFilter<"Aluno"> | string | null
   boletos?: Prisma.BoletoListRelationFilter
-}, "id" | "email" | "cpf">
+}, "id" | "cpf">
 
 export type AlunoOrderByWithAggregationInput = {
   id?: Prisma.SortOrder

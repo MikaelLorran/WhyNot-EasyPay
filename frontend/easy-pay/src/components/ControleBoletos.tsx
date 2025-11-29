@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 interface Boleto {
 	id: number;
@@ -13,6 +14,7 @@ interface Boleto {
 }
 
 export default function ControleBoletos() {
+	const navigate = useNavigate();
 	const [boletos, setBoletos] = useState<Boleto[]>([]);
 
 	useEffect(() => {
@@ -29,27 +31,21 @@ export default function ControleBoletos() {
 
 	return (
 		<div className="container">
-			<h1>Controle de pagamento</h1>
+			<h1>Controle de Boletos</h1>
 
 			<div className="control-card">
 				<div className="filters">
 					<div className="filter-group">
-						<label>🔍 Buscar boleto</label>
 						<input
 							type="text"
 							id="searchBoleto"
-							placeholder="Digite CPF/CNPJ ou nome..."
+							placeholder="🔍 Digite o Nome do aluno..."
 						/>
 					</div>
-
 					<div className="filter-group">
-						<label>Status</label>
-						<select id="statusFilter">
-							<option value="pendentes">Pendentes</option>
-							<option value="pagos">Pagos</option>
-							<option value="atrasados">Em atraso</option>
-							<option value="todos">Todos</option>
-						</select>
+						<button onClick={() => navigate("/cadastroalunos")}>
+							Cadastrar Novo Boleto
+						</button>
 					</div>
 				</div>
 
@@ -58,9 +54,10 @@ export default function ControleBoletos() {
 						<thead>
 							<tr>
 								<th>Nome do Aluno</th>
-								<th>CPF/CNPJ</th>
+								<th>CPF</th>
 								<th>Valor</th>
 								<th>Status</th>
+								<th>Data de Vencimento</th>
 								<th>Ações</th>
 							</tr>
 						</thead>
@@ -76,6 +73,9 @@ export default function ControleBoletos() {
 											: new Date(boleto.vencimento) < new Date()
 											? "Em atraso"
 											: "Pendente"}
+									</td>
+									<td>
+										{new Date(boleto.vencimento).toLocaleDateString("pt-Br")}
 									</td>
 									<td>
 										<div className="actions">
