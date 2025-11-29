@@ -645,8 +645,7 @@ footer {
     width: 220px;
     height: 100vh;
     background: white;
-    border-right: 3px solid #0f8b2d; 
-    /* Remove padding para que os botões encostem nas bordas laterais */
+    border-right: 3px solid var(--color-text-primary); 
     padding: 0; 
     position: fixed;
     left: 0%;
@@ -665,7 +664,7 @@ footer {
 
 .cardnav {
     background: white; 
-    color: #0f8b2d; 
+    color: var(--color-text-primary); 
     font-weight: 600; 
     border-radius: 0; 
     padding: 15px 20px; 
@@ -678,12 +677,10 @@ footer {
 }
 
 .cardnav:hover {
-    background: #0f8b2d; 
+    background: var(--color-text-primary); 
     color: white; 
     transform: none; 
 }
-
-/* Adiciona uma linha de separação leve entre os itens (opcional, para visualização) */
 .sidebar ul li:not(:last-child) .cardnav {
     border-bottom: 1px solid rgba(0, 0, 0, 0.05); 
 }
