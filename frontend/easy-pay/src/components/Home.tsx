@@ -1,7 +1,7 @@
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
-	//const navigate = useNavigate();
+	const navigate = useNavigate();
 
 	return (
 		<div className="container">
@@ -11,7 +11,7 @@ export default function Home() {
 			</div>
 
 			<div className="cards-grid">
-				<a href="Cadastro de Usuários.html" className="card">
+				<a onClick={() => navigate("/usuarios")} className="card">
 					<div className="card-icon">👥</div>
 					<h2 className="card-title">Cadastro de Usuários</h2>
 					<p className="card-description">
@@ -20,7 +20,7 @@ export default function Home() {
 					</p>
 				</a>
 
-				<a href="Cadastro de Boletos.html" className="card">
+				<a onClick={() => navigate("/cadastroboletos")} className="card">
 					<div className="card-icon">📄</div>
 					<h2 className="card-title">Cadastro de Boletos</h2>
 					<p className="card-description">
@@ -32,12 +32,12 @@ export default function Home() {
 			<div className="management-section">
 				<h3 className="section-title">Controle e Gerenciamento</h3>
 				<div className="management-grid">
-					<a href="Controle de Alunos.html" className="management-card">
+					<a onClick={() => navigate("/alunos")} className="management-card">
 						<div className="management-icon">🎓</div>
 						<h3 className="management-title">Controle de Alunos</h3>
 					</a>
 
-					<a href="Controle de Pagamentos.html" className="management-card">
+					<a onClick={() => navigate("/controleboletos")} className="management-card">
 						<div className="management-icon">💳</div>
 						<h3 className="management-title">Controle de Pagamentos</h3>
 					</a>
