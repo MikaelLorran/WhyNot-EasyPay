@@ -645,34 +645,45 @@ footer {
     width: 220px;
     height: 100vh;
     background: white;
-    border-right: 3px solid #0f8b2d;
-    padding: 20px 10px;
+    border-right: 3px solid #0f8b2d; 
+    /* Remove padding para que os botões encostem nas bordas laterais */
+    padding: 0; 
     position: fixed;
-	left: 0%;
-	top: 0%;
+    left: 0%;
+    top: 0%;
 }
 
 .sidebar ul {
     list-style: none;
-    padding: 0;
+    padding: 0; 
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    height: 100%; 
+    gap: 0; 
 }
 
 .cardnav {
-    background: #0f8b2d;
-    color: white;
-    padding: 15px;
-    border-radius: 12px;
-    text-align: center;
+    background: white; 
+    color: #0f8b2d; 
+    font-weight: 600; 
+    border-radius: 0; 
+    padding: 15px 20px; 
+    text-align: left; 
     cursor: pointer;
     font-size: 16px;
-    transition: 0.2s;
+    display: block; 
+    width: 100%;
+    transition: background 0.3s, color 0.3s; 
 }
 
 .cardnav:hover {
-    background: #0c6d22;
-    transform: scale(1.03);
+    background: #0f8b2d; 
+    color: white; 
+    transform: none; 
+}
+
+/* Adiciona uma linha de separação leve entre os itens (opcional, para visualização) */
+.sidebar ul li:not(:last-child) .cardnav {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05); 
 }
