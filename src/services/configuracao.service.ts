@@ -3,7 +3,11 @@ import * as configuracaoRepository from "../repositories/configuracao.repository
 export function criarConfiguracao(data: {
 	diasAntesVencimento: number;
 	diasAposVencimento: number;
-	frequenciaVerificacao: string;
+	minuto: string;
+	hora: string;
+	diaMes: string;
+	mes: string;
+	diaSemana: string;
 }) {
 	return configuracaoRepository.create(data);
 }
@@ -17,7 +21,11 @@ export async function updateConfiguracao(
 	data: {
 		diasAntesVencimento: number;
 		diasAposVencimento: number;
-		frequenciaVerificacao: string;
+		minuto: string;
+		hora: string;
+		diaMes: string;
+		mes: string;
+		diaSemana: string;
 	}
 ) {
 	const configuracao = await configuracaoRepository.findById(id);

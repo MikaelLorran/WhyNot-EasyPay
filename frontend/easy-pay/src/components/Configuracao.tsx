@@ -6,12 +6,6 @@ import { toast } from "react-toastify";
 export default function AlterarConfiguracao() {
 	const [diasAntesVencimento, setDiasAntesVencimento] = useState("");
 	const [diasAposVencimento, setDiasAposVencimento] = useState("");
-
-	// O estado frequenciaVerificacao pode ser mantido para o valor completo,
-	// mas não será usado para *disparar* a separação de forma síncrona.
-	const [frequenciaVerificacao, setFrequenciaVerificacao] =
-		useState<string>("");
-
 	const [minuto, setMinuto] = useState("");
 	const [hora, setHora] = useState("");
 	const [diaMes, setDiaMes] = useState("");
@@ -22,42 +16,17 @@ export default function AlterarConfiguracao() {
 
 	useEffect(() => {
 		const carregarConfiguracao = async () => {
-			try {
-				const response = await api.get("/configuracao/1");
-				const {
-					diasAntesVencimento: antes,
-					diasAposVencimento: apos,
-					frequenciaVerificacao: cronString,
-				} = response.data;
+			const response = await api.get("/configuracao/1");
 
-				setDiasAntesVencimento(antes);
-				setDiasAposVencimento(apos);
-				setFrequenciaVerificacao(cronString);
-
-				if (cronString) {
-					const partes = cronString.split(" ");
-
-					if (partes.length === 5) {
-						setMinuto(partes[0]);
-						setHora(partes[1]);
-						setDiaMes(partes[2]);
-						setMes(partes[3]);
-						setDiaSemana(partes[4]);
-					} else {
-						console.error(
-							"Formato inválido de frequência de verificação (Cron)"
-						);
-						setMinuto("*");
-						setHora("*");
-						setDiaMes("*");
-						setMes("*");
-						setDiaSemana("*");
-					}
-				}
-			} catch (error) {
-				console.error("Erro ao carregar configurações:", error);
-			}
+			setDiasAntesVencimento(response.data.diasAntesVencimento);
+			setDiasAposVencimento(response.data.diasAposVencimento);
+			setMinuto(response.data.minuto);
+			setHora(response.data.hora);
+			setDiaMes(response.data.diaMes);
+			setMes(response.data.mes);
+			setDiaSemana(response.data.diaSemana);
 		};
+
 		carregarConfiguracao();
 	}, []);
 
@@ -65,17 +34,19 @@ export default function AlterarConfiguracao() {
 		e.preventDefault();
 
 		if (!minuto || !hora || !diaMes || !mes || !diaSemana) {
-			toast.error("Por favor, preencha todos os campos da frequência (Cron).");
+			toast.error("Por favor, preencha todos os campos da frequência");
 			return;
 		}
-
-		const cronExpression = `${minuto} ${hora} ${diaMes} ${mes} ${diaSemana}`;
 
 		try {
 			await api.put("/configuracao/1", {
 				diasAntesVencimento,
 				diasAposVencimento,
-				frequenciaVerificacao: cronExpression,
+				minuto,
+				hora,
+				diaMes,
+				mes,
+				diaSemana,
 			});
 			toast.success("Configuração alterada com sucesso!");
 			setTimeout(() => {

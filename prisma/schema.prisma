@@ -44,5 +44,9 @@ model Configuracao {
   id                Int      @id @default(autoincrement())
   diasAntesVencimento Int
   diasAposVencimento  Int
-  frequenciaVerificacao  String
+  minuto           String
+  hora             String
+  diaMes           String
+  mes              String
+  diaSemana       String
 }

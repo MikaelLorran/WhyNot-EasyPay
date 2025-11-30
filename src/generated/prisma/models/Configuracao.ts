@@ -42,21 +42,33 @@ export type ConfiguracaoMinAggregateOutputType = {
   id: number | null
   diasAntesVencimento: number | null
   diasAposVencimento: number | null
-  frequenciaVerificacao: string | null
+  minuto: string | null
+  hora: string | null
+  diaMes: string | null
+  mes: string | null
+  diaSemana: string | null
 }
 
 export type ConfiguracaoMaxAggregateOutputType = {
   id: number | null
   diasAntesVencimento: number | null
   diasAposVencimento: number | null
-  frequenciaVerificacao: string | null
+  minuto: string | null
+  hora: string | null
+  diaMes: string | null
+  mes: string | null
+  diaSemana: string | null
 }
 
 export type ConfiguracaoCountAggregateOutputType = {
   id: number
   diasAntesVencimento: number
   diasAposVencimento: number
-  frequenciaVerificacao: number
+  minuto: number
+  hora: number
+  diaMes: number
+  mes: number
+  diaSemana: number
   _all: number
 }
 
@@ -77,21 +89,33 @@ export type ConfiguracaoMinAggregateInputType = {
   id?: true
   diasAntesVencimento?: true
   diasAposVencimento?: true
-  frequenciaVerificacao?: true
+  minuto?: true
+  hora?: true
+  diaMes?: true
+  mes?: true
+  diaSemana?: true
 }
 
 export type ConfiguracaoMaxAggregateInputType = {
   id?: true
   diasAntesVencimento?: true
   diasAposVencimento?: true
-  frequenciaVerificacao?: true
+  minuto?: true
+  hora?: true
+  diaMes?: true
+  mes?: true
+  diaSemana?: true
 }
 
 export type ConfiguracaoCountAggregateInputType = {
   id?: true
   diasAntesVencimento?: true
   diasAposVencimento?: true
-  frequenciaVerificacao?: true
+  minuto?: true
+  hora?: true
+  diaMes?: true
+  mes?: true
+  diaSemana?: true
   _all?: true
 }
 
@@ -185,7 +209,11 @@ export type ConfiguracaoGroupByOutputType = {
   id: number
   diasAntesVencimento: number
   diasAposVencimento: number
-  frequenciaVerificacao: string
+  minuto: string
+  hora: string
+  diaMes: string
+  mes: string
+  diaSemana: string
   _count: ConfiguracaoCountAggregateOutputType | null
   _avg: ConfiguracaoAvgAggregateOutputType | null
   _sum: ConfiguracaoSumAggregateOutputType | null
@@ -215,14 +243,22 @@ export type ConfiguracaoWhereInput = {
   id?: Prisma.IntFilter<"Configuracao"> | number
   diasAntesVencimento?: Prisma.IntFilter<"Configuracao"> | number
   diasAposVencimento?: Prisma.IntFilter<"Configuracao"> | number
-  frequenciaVerificacao?: Prisma.StringFilter<"Configuracao"> | string
+  minuto?: Prisma.StringFilter<"Configuracao"> | string
+  hora?: Prisma.StringFilter<"Configuracao"> | string
+  diaMes?: Prisma.StringFilter<"Configuracao"> | string
+  mes?: Prisma.StringFilter<"Configuracao"> | string
+  diaSemana?: Prisma.StringFilter<"Configuracao"> | string
 }
 
 export type ConfiguracaoOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   diasAntesVencimento?: Prisma.SortOrder
   diasAposVencimento?: Prisma.SortOrder
-  frequenciaVerificacao?: Prisma.SortOrder
+  minuto?: Prisma.SortOrder
+  hora?: Prisma.SortOrder
+  diaMes?: Prisma.SortOrder
+  mes?: Prisma.SortOrder
+  diaSemana?: Prisma.SortOrder
 }
 
 export type ConfiguracaoWhereUniqueInput = Prisma.AtLeast<{
@@ -232,14 +268,22 @@ export type ConfiguracaoWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ConfiguracaoWhereInput | Prisma.ConfiguracaoWhereInput[]
   diasAntesVencimento?: Prisma.IntFilter<"Configuracao"> | number
   diasAposVencimento?: Prisma.IntFilter<"Configuracao"> | number
-  frequenciaVerificacao?: Prisma.StringFilter<"Configuracao"> | string
+  minuto?: Prisma.StringFilter<"Configuracao"> | string
+  hora?: Prisma.StringFilter<"Configuracao"> | string
+  diaMes?: Prisma.StringFilter<"Configuracao"> | string
+  mes?: Prisma.StringFilter<"Configuracao"> | string
+  diaSemana?: Prisma.StringFilter<"Configuracao"> | string
 }, "id">
 
 export type ConfiguracaoOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   diasAntesVencimento?: Prisma.SortOrder
   diasAposVencimento?: Prisma.SortOrder
-  frequenciaVerificacao?: Prisma.SortOrder
+  minuto?: Prisma.SortOrder
+  hora?: Prisma.SortOrder
+  diaMes?: Prisma.SortOrder
+  mes?: Prisma.SortOrder
+  diaSemana?: Prisma.SortOrder
   _count?: Prisma.ConfiguracaoCountOrderByAggregateInput
   _avg?: Prisma.ConfiguracaoAvgOrderByAggregateInput
   _max?: Prisma.ConfiguracaoMaxOrderByAggregateInput
@@ -254,60 +298,96 @@ export type ConfiguracaoScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Configuracao"> | number
   diasAntesVencimento?: Prisma.IntWithAggregatesFilter<"Configuracao"> | number
   diasAposVencimento?: Prisma.IntWithAggregatesFilter<"Configuracao"> | number
-  frequenciaVerificacao?: Prisma.StringWithAggregatesFilter<"Configuracao"> | string
+  minuto?: Prisma.StringWithAggregatesFilter<"Configuracao"> | string
+  hora?: Prisma.StringWithAggregatesFilter<"Configuracao"> | string
+  diaMes?: Prisma.StringWithAggregatesFilter<"Configuracao"> | string
+  mes?: Prisma.StringWithAggregatesFilter<"Configuracao"> | string
+  diaSemana?: Prisma.StringWithAggregatesFilter<"Configuracao"> | string
 }
 
 export type ConfiguracaoCreateInput = {
   diasAntesVencimento: number
   diasAposVencimento: number
-  frequenciaVerificacao: string
+  minuto: string
+  hora: string
+  diaMes: string
+  mes: string
+  diaSemana: string
 }
 
 export type ConfiguracaoUncheckedCreateInput = {
   id?: number
   diasAntesVencimento: number
   diasAposVencimento: number
-  frequenciaVerificacao: string
+  minuto: string
+  hora: string
+  diaMes: string
+  mes: string
+  diaSemana: string
 }
 
 export type ConfiguracaoUpdateInput = {
   diasAntesVencimento?: Prisma.IntFieldUpdateOperationsInput | number
   diasAposVencimento?: Prisma.IntFieldUpdateOperationsInput | number
-  frequenciaVerificacao?: Prisma.StringFieldUpdateOperationsInput | string
+  minuto?: Prisma.StringFieldUpdateOperationsInput | string
+  hora?: Prisma.StringFieldUpdateOperationsInput | string
+  diaMes?: Prisma.StringFieldUpdateOperationsInput | string
+  mes?: Prisma.StringFieldUpdateOperationsInput | string
+  diaSemana?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ConfiguracaoUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   diasAntesVencimento?: Prisma.IntFieldUpdateOperationsInput | number
   diasAposVencimento?: Prisma.IntFieldUpdateOperationsInput | number
-  frequenciaVerificacao?: Prisma.StringFieldUpdateOperationsInput | string
+  minuto?: Prisma.StringFieldUpdateOperationsInput | string
+  hora?: Prisma.StringFieldUpdateOperationsInput | string
+  diaMes?: Prisma.StringFieldUpdateOperationsInput | string
+  mes?: Prisma.StringFieldUpdateOperationsInput | string
+  diaSemana?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ConfiguracaoCreateManyInput = {
   id?: number
   diasAntesVencimento: number
   diasAposVencimento: number
-  frequenciaVerificacao: string
+  minuto: string
+  hora: string
+  diaMes: string
+  mes: string
+  diaSemana: string
 }
 
 export type ConfiguracaoUpdateManyMutationInput = {
   diasAntesVencimento?: Prisma.IntFieldUpdateOperationsInput | number
   diasAposVencimento?: Prisma.IntFieldUpdateOperationsInput | number
-  frequenciaVerificacao?: Prisma.StringFieldUpdateOperationsInput | string
+  minuto?: Prisma.StringFieldUpdateOperationsInput | string
+  hora?: Prisma.StringFieldUpdateOperationsInput | string
+  diaMes?: Prisma.StringFieldUpdateOperationsInput | string
+  mes?: Prisma.StringFieldUpdateOperationsInput | string
+  diaSemana?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ConfiguracaoUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   diasAntesVencimento?: Prisma.IntFieldUpdateOperationsInput | number
   diasAposVencimento?: Prisma.IntFieldUpdateOperationsInput | number
-  frequenciaVerificacao?: Prisma.StringFieldUpdateOperationsInput | string
+  minuto?: Prisma.StringFieldUpdateOperationsInput | string
+  hora?: Prisma.StringFieldUpdateOperationsInput | string
+  diaMes?: Prisma.StringFieldUpdateOperationsInput | string
+  mes?: Prisma.StringFieldUpdateOperationsInput | string
+  diaSemana?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ConfiguracaoCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   diasAntesVencimento?: Prisma.SortOrder
   diasAposVencimento?: Prisma.SortOrder
-  frequenciaVerificacao?: Prisma.SortOrder
+  minuto?: Prisma.SortOrder
+  hora?: Prisma.SortOrder
+  diaMes?: Prisma.SortOrder
+  mes?: Prisma.SortOrder
+  diaSemana?: Prisma.SortOrder
 }
 
 export type ConfiguracaoAvgOrderByAggregateInput = {
@@ -320,14 +400,22 @@ export type ConfiguracaoMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   diasAntesVencimento?: Prisma.SortOrder
   diasAposVencimento?: Prisma.SortOrder
-  frequenciaVerificacao?: Prisma.SortOrder
+  minuto?: Prisma.SortOrder
+  hora?: Prisma.SortOrder
+  diaMes?: Prisma.SortOrder
+  mes?: Prisma.SortOrder
+  diaSemana?: Prisma.SortOrder
 }
 
 export type ConfiguracaoMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   diasAntesVencimento?: Prisma.SortOrder
   diasAposVencimento?: Prisma.SortOrder
-  frequenciaVerificacao?: Prisma.SortOrder
+  minuto?: Prisma.SortOrder
+  hora?: Prisma.SortOrder
+  diaMes?: Prisma.SortOrder
+  mes?: Prisma.SortOrder
+  diaSemana?: Prisma.SortOrder
 }
 
 export type ConfiguracaoSumOrderByAggregateInput = {
@@ -342,31 +430,47 @@ export type ConfiguracaoSelect<ExtArgs extends runtime.Types.Extensions.Internal
   id?: boolean
   diasAntesVencimento?: boolean
   diasAposVencimento?: boolean
-  frequenciaVerificacao?: boolean
+  minuto?: boolean
+  hora?: boolean
+  diaMes?: boolean
+  mes?: boolean
+  diaSemana?: boolean
 }, ExtArgs["result"]["configuracao"]>
 
 export type ConfiguracaoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   diasAntesVencimento?: boolean
   diasAposVencimento?: boolean
-  frequenciaVerificacao?: boolean
+  minuto?: boolean
+  hora?: boolean
+  diaMes?: boolean
+  mes?: boolean
+  diaSemana?: boolean
 }, ExtArgs["result"]["configuracao"]>
 
 export type ConfiguracaoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   diasAntesVencimento?: boolean
   diasAposVencimento?: boolean
-  frequenciaVerificacao?: boolean
+  minuto?: boolean
+  hora?: boolean
+  diaMes?: boolean
+  mes?: boolean
+  diaSemana?: boolean
 }, ExtArgs["result"]["configuracao"]>
 
 export type ConfiguracaoSelectScalar = {
   id?: boolean
   diasAntesVencimento?: boolean
   diasAposVencimento?: boolean
-  frequenciaVerificacao?: boolean
+  minuto?: boolean
+  hora?: boolean
+  diaMes?: boolean
+  mes?: boolean
+  diaSemana?: boolean
 }
 
-export type ConfiguracaoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "diasAntesVencimento" | "diasAposVencimento" | "frequenciaVerificacao", ExtArgs["result"]["configuracao"]>
+export type ConfiguracaoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "diasAntesVencimento" | "diasAposVencimento" | "minuto" | "hora" | "diaMes" | "mes" | "diaSemana", ExtArgs["result"]["configuracao"]>
 
 export type $ConfiguracaoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Configuracao"
@@ -375,7 +479,11 @@ export type $ConfiguracaoPayload<ExtArgs extends runtime.Types.Extensions.Intern
     id: number
     diasAntesVencimento: number
     diasAposVencimento: number
-    frequenciaVerificacao: string
+    minuto: string
+    hora: string
+    diaMes: string
+    mes: string
+    diaSemana: string
   }, ExtArgs["result"]["configuracao"]>
   composites: {}
 }
@@ -802,7 +910,11 @@ export interface ConfiguracaoFieldRefs {
   readonly id: Prisma.FieldRef<"Configuracao", 'Int'>
   readonly diasAntesVencimento: Prisma.FieldRef<"Configuracao", 'Int'>
   readonly diasAposVencimento: Prisma.FieldRef<"Configuracao", 'Int'>
-  readonly frequenciaVerificacao: Prisma.FieldRef<"Configuracao", 'String'>
+  readonly minuto: Prisma.FieldRef<"Configuracao", 'String'>
+  readonly hora: Prisma.FieldRef<"Configuracao", 'String'>
+  readonly diaMes: Prisma.FieldRef<"Configuracao", 'String'>
+  readonly mes: Prisma.FieldRef<"Configuracao", 'String'>
+  readonly diaSemana: Prisma.FieldRef<"Configuracao", 'String'>
 }
     
 

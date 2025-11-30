@@ -34,7 +34,7 @@ export default function AlterarAluno() {
 		const id = window.location.pathname.split("/").pop();
 
 		try {
-			await api.put(`/aluno/${id}`, {
+			await api.put(`/alunos/${id}`, {
 				nome,
 				email,
 				telefone,

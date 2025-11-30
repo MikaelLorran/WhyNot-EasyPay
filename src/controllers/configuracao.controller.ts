@@ -5,12 +5,23 @@ export async function criarConfiguracao(
 	req: express.Request,
 	res: express.Response
 ) {
-	const { diasAntesVencimento, diasAposVencimento, frequenciaVerificacao } =
-		req.body;
+	const {
+		diasAntesVencimento,
+		diasAposVencimento,
+		minuto,
+		hora,
+		diaMes,
+		mes,
+		diaSemana,
+	} = req.body;
 	const configuracao = await configuracaoService.criarConfiguracao({
 		diasAntesVencimento,
 		diasAposVencimento,
-		frequenciaVerificacao,
+		minuto,
+		hora,
+		diaMes,
+		mes,
+		diaSemana,
 	});
 	res.status(201).json(configuracao);
 }
@@ -35,14 +46,25 @@ export async function updateConfiguracao(
 	res: express.Response
 ) {
 	const { id } = req.params;
-	const { diasAntesVencimento, diasAposVencimento, frequenciaVerificacao } =
-		req.body;
+	const {
+		diasAntesVencimento,
+		diasAposVencimento,
+		minuto,
+		hora,
+		diaMes,
+		mes,
+		diaSemana,
+	} = req.body;
 	const configuracao = await configuracaoService.updateConfiguracao(
 		Number(id),
 		{
 			diasAntesVencimento,
 			diasAposVencimento,
-			frequenciaVerificacao,
+			minuto,
+			hora,
+			diaMes,
+			mes,
+			diaSemana,
 		}
 	);
 	res.status(200).json(configuracao);

@@ -11,7 +11,8 @@ const prisma = new PrismaClient();
 const frequenciaVerificacao = async () => {
 	const configuracao = await configuracaoService.getConfiguracaoById(1);
 	if (configuracao) {
-		return configuracao.frequenciaVerificacao;
+		const frequencia = `${configuracao.minuto} ${configuracao.hora} ${configuracao.diaMes} ${configuracao.mes} ${configuracao.diaSemana}`;
+		return frequencia;
 	}
 	return "0 9 * * 1-5";
 };
@@ -35,6 +36,8 @@ export async function scheduleBoletoBeforeExpirationCheck() {
 			scheduled: true,
 			timezone: "America/Sao_Paulo",
 		};
+
+	console.log(`Frequência definida: ${frequencia}`);
 }
 
 export async function scheduleBoletoAfterExpirationCheck() {

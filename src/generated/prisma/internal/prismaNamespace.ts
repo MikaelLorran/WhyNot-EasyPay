@@ -782,7 +782,11 @@ export const ConfiguracaoScalarFieldEnum = {
   id: 'id',
   diasAntesVencimento: 'diasAntesVencimento',
   diasAposVencimento: 'diasAposVencimento',
-  frequenciaVerificacao: 'frequenciaVerificacao'
+  minuto: 'minuto',
+  hora: 'hora',
+  diaMes: 'diaMes',
+  mes: 'mes',
+  diaSemana: 'diaSemana'
 } as const
 
 export type ConfiguracaoScalarFieldEnum = (typeof ConfiguracaoScalarFieldEnum)[keyof typeof ConfiguracaoScalarFieldEnum]

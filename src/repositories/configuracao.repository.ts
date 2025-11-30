@@ -3,7 +3,11 @@ import Configuracao from "../entities/configuracao.entity.js";
 export function create(data: {
 	diasAntesVencimento: number;
 	diasAposVencimento: number;
-	frequenciaVerificacao: string;
+	minuto: string;
+	hora: string;
+	diaMes: string;
+	mes: string;
+	diaSemana: string;
 }) {
 	return Configuracao.create({ data });
 }
@@ -19,7 +23,11 @@ export function updateConfiguracao(
 	data: {
 		diasAntesVencimento: number;
 		diasAposVencimento: number;
-		frequenciaVerificacao: string;
+		minuto: string;
+		hora: string;
+		diaMes: string;
+		mes: string;
+		diaSemana: string;
 	}
 ) {
 	return Configuracao.update({
