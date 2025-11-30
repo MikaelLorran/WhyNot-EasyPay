@@ -21,7 +21,10 @@ export default function Home() {
 						<h3 className="management-title">Controle de Boletos</h3>
 					</a>
 
-					<a className="management-card" onClick={() => navigate("/")}>
+					<a
+						onClick={() => navigate("/configuracao")}
+						className="management-card"
+					>
 						<div className="management-icon">⚙️</div>
 						<h3 className="management-title">Configurar envios</h3>
 					</a>

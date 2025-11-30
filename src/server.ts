@@ -5,6 +5,7 @@ import * as cronSchedule from "./infrastructure/cronSchedule.infrastucture.js";
 import alunoRoutes from "./routes/alunos.routes.js";
 import boletoRoutes from "./routes/boleto.routes.js";
 import usuarioRoutes from "./routes/usuario.route.js";
+import configuracaoRoutes from "./routes/configuracao.routes.js";
 
 cronSchedule.scheduleBoletoBeforeExpirationCheck();
 cronSchedule.scheduleBoletoAfterExpirationCheck();
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(alunoRoutes);
 app.use(boletoRoutes);
 app.use(usuarioRoutes);
+app.use(configuracaoRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

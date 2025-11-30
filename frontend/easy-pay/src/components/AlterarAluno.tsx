@@ -40,13 +40,13 @@ export default function AlterarAluno() {
 				telefone,
 				cpf,
 			});
-			toast.success("Aluno cadastrado com sucesso!");
+			toast.success("Aluno alterado com sucesso!");
 			setTimeout(() => {
 				navigate("/alunos");
 			}, 1500);
 		} catch (error) {
-			console.error("Erro ao cadastrar aluno:", error);
-			toast.error("Erro ao cadastrar aluno. Por favor, tente novamente.");
+			console.error("Erro ao alterar aluno:", error);
+			toast.error("Erro ao alterar aluno. Por favor, tente novamente.");
 		}
 	};
 

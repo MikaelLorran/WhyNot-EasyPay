@@ -3,6 +3,7 @@ import * as dotenv from "dotenv";
 import * as emailService from "./email.service.js";
 import * as alunoService from "./aluno.service.js";
 import * as whatsappService from "./whatsapp.service.js";
+import * as configuracaoService from "./configuracao.service.js";
 
 dotenv.config();
 export function criarBoleto(data: {
@@ -47,7 +48,7 @@ export async function updateBoleto(
 		throw new Error("Boleto não encontrado!");
 	}
 
-	return boletoRepository.updateAluno(id, data);
+	return boletoRepository.updateBoleto(id, data);
 }
 
 export async function getBoletosByAlunoId(id: number) {
@@ -57,9 +58,14 @@ export async function getBoletosByAlunoId(id: number) {
 export async function sendBeforeExpirationMessage() {
 	console.log("Iniciando verificação de boletos a vencer...");
 	const currentDate = new Date();
+	const configuracao = await configuracaoService.getConfiguracaoById(1);
+	const daysBeforeVencimento = configuracao
+		? configuracao.diasAntesVencimento
+		: 3;
 
 	const boletosToNotify = await boletoRepository.findBeforeDueBoletos(
-		currentDate
+		currentDate,
+		daysBeforeVencimento
 	);
 
 	if (boletosToNotify.length === 0) {
@@ -122,9 +128,14 @@ export async function sendBeforeExpirationMessage() {
 export async function sendAfterExpirationMessage() {
 	console.log("Iniciando verificação de boletos vencidos...");
 	const currentDate = new Date();
+	const configuracao = await configuracaoService.getConfiguracaoById(1);
+	const daysAfterVencimento = configuracao
+		? configuracao.diasAposVencimento
+		: 10;
 
 	const boletosToNotify = await boletoRepository.findAfterDueBoletos(
-		currentDate
+		currentDate,
+		daysAfterVencimento
 	);
 
 	if (boletosToNotify.length === 0) {

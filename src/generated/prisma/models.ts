@@ -11,4 +11,5 @@
 export type * from './models/Aluno.js'
 export type * from './models/Boleto.js'
 export type * from './models/Usuario.js'
+export type * from './models/Configuracao.js'
 export type * from './commonInputTypes.js'

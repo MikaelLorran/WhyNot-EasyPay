@@ -32,7 +32,7 @@ export function marcarComoPago(id: number, dataPagamento: Date) {
 	});
 }
 
-export function updateAluno(
+export function updateBoleto(
 	id: number,
 	data: {
 		titulo: string;
@@ -48,34 +48,29 @@ export async function deleteBoleto(id: number) {
 	return Boleto.delete({ where: { id } });
 }
 
-// Boletos de um aluno específico
 export async function findByAlunoId(alunoId: number) {
 	return Boleto.findMany({ where: { alunoId } });
 }
-/* 
-  id        Int      @id @default(autoincrement())
-  titulo    String
-  valor     Float
-  vencimento DateTime
-  dataPagamento DateTime?
-  finalizado Boolean  @default(false)
-  aluno      Aluno?    @relation(fields: [alunoId], references: [id])
-  alunoId    Int?
-  */
 
-export async function findBeforeDueBoletos(currentDate: Date) {
-	const threeDaysAfter = new Date(currentDate);
-	threeDaysAfter.setDate(threeDaysAfter.getDate() + 3);
+export async function findBeforeDueBoletos(
+	currentDate: Date,
+	daysBeforeVencimento: number
+) {
+	const daysBeforeDue = new Date(currentDate);
+	daysBeforeDue.setDate(daysBeforeDue.getDate() + daysBeforeVencimento);
 	return Boleto.findMany({
 		where: {
-			vencimento: { gte: currentDate, lte: threeDaysAfter },
+			vencimento: { gte: currentDate, lte: daysBeforeDue },
 			finalizado: false,
 		},
 		include: { aluno: true },
 	});
 }
 
-export async function findAfterDueBoletos(currentDate: Date) {
+export async function findAfterDueBoletos(
+	currentDate: Date,
+	daysAfterVencimento: number
+) {
 	return Boleto.findMany({
 		where: {
 			vencimento: { lte: currentDate },

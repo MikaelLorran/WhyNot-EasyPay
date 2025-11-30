@@ -392,7 +392,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   Aluno: 'Aluno',
   Boleto: 'Boleto',
-  Usuario: 'Usuario'
+  Usuario: 'Usuario',
+  Configuracao: 'Configuracao'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -408,7 +409,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "aluno" | "boleto" | "usuario"
+    modelProps: "aluno" | "boleto" | "usuario" | "configuracao"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -634,6 +635,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Configuracao: {
+      payload: Prisma.$ConfiguracaoPayload<ExtArgs>
+      fields: Prisma.ConfiguracaoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ConfiguracaoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfiguracaoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ConfiguracaoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfiguracaoPayload>
+        }
+        findFirst: {
+          args: Prisma.ConfiguracaoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfiguracaoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ConfiguracaoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfiguracaoPayload>
+        }
+        findMany: {
+          args: Prisma.ConfiguracaoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfiguracaoPayload>[]
+        }
+        create: {
+          args: Prisma.ConfiguracaoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfiguracaoPayload>
+        }
+        createMany: {
+          args: Prisma.ConfiguracaoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ConfiguracaoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfiguracaoPayload>[]
+        }
+        delete: {
+          args: Prisma.ConfiguracaoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfiguracaoPayload>
+        }
+        update: {
+          args: Prisma.ConfiguracaoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfiguracaoPayload>
+        }
+        deleteMany: {
+          args: Prisma.ConfiguracaoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ConfiguracaoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ConfiguracaoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfiguracaoPayload>[]
+        }
+        upsert: {
+          args: Prisma.ConfiguracaoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfiguracaoPayload>
+        }
+        aggregate: {
+          args: Prisma.ConfiguracaoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateConfiguracao>
+        }
+        groupBy: {
+          args: Prisma.ConfiguracaoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ConfiguracaoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ConfiguracaoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ConfiguracaoCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -701,6 +776,16 @@ export const UsuarioScalarFieldEnum = {
 } as const
 
 export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
+
+
+export const ConfiguracaoScalarFieldEnum = {
+  id: 'id',
+  diasAntesVencimento: 'diasAntesVencimento',
+  diasAposVencimento: 'diasAposVencimento',
+  frequenciaVerificacao: 'frequenciaVerificacao'
+} as const
+
+export type ConfiguracaoScalarFieldEnum = (typeof ConfiguracaoScalarFieldEnum)[keyof typeof ConfiguracaoScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -849,6 +934,7 @@ export type GlobalOmitConfig = {
   aluno?: Prisma.AlunoOmit
   boleto?: Prisma.BoletoOmit
   usuario?: Prisma.UsuarioOmit
+  configuracao?: Prisma.ConfiguracaoOmit
 }
 
 /* Types for Logging */

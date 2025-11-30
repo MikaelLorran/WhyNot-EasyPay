@@ -14,6 +14,9 @@ export default function Navbar() {
 				<li onClick={() => navigate("/boletos")} className="cardnav">
 					Boletos
 				</li>
+				<li onClick={() => navigate("/configuracao")} className="cardnav">
+					Configurações
+				</li>
 				<li onClick={() => navigate("/login")} className="cardnav-logout">
 					Sair
 				</li>

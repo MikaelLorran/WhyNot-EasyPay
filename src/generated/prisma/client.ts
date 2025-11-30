@@ -59,3 +59,8 @@ export type Boleto = Prisma.BoletoModel
  * 
  */
 export type Usuario = Prisma.UsuarioModel
+/**
+ * Model Configuracao
+ * 
+ */
+export type Configuracao = Prisma.ConfiguracaoModel

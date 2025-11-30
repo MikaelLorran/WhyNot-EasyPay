@@ -2,12 +2,23 @@ import cron from "node-cron";
 import { PrismaClient } from "../generated/prisma/client.js";
 import * as boletoService from "../services/boleto.service.js";
 import * as dotenv from "dotenv";
+import * as configuracaoService from "../services/configuracao.service.js";
+
 dotenv.config();
 
 const prisma = new PrismaClient();
 
-export function scheduleBoletoBeforeExpirationCheck() {
-	const cronExpression = "00 02 * * *";
+const frequenciaVerificacao = async () => {
+	const configuracao = await configuracaoService.getConfiguracaoById(1);
+	if (configuracao) {
+		return configuracao.frequenciaVerificacao;
+	}
+	return "0 9 * * 1-5";
+};
+
+export async function scheduleBoletoBeforeExpirationCheck() {
+	const frequencia: string = await frequenciaVerificacao();
+	const cronExpression = frequencia;
 
 	cron.schedule(cronExpression, async () => {
 		console.log(
@@ -26,8 +37,9 @@ export function scheduleBoletoBeforeExpirationCheck() {
 		};
 }
 
-export function scheduleBoletoAfterExpirationCheck() {
-	const cronExpression = "13 03 * * *";
+export async function scheduleBoletoAfterExpirationCheck() {
+	const frequencia: string = await frequenciaVerificacao();
+	const cronExpression = frequencia;
 
 	cron.schedule(cronExpression, async () => {
 		console.log(

@@ -6,6 +6,7 @@ import ControleAlunos from "./components/ControleAlunos.tsx";
 import CadastroAlunos from "./components/CadastroAlunos.tsx";
 import CadastroBoletos from "./components/CadastroBoletos.tsx";
 import EdicaoAluno from "./components/AlterarAluno.tsx";
+import Configuracao from "./components/Configuracao.tsx";
 import Login from "./components/Login.tsx";
 import Navbar from "./components/Navbar.tsx";
 
@@ -20,6 +21,7 @@ function App() {
 				<Route path="/cadastroalunos" element={<CadastroAlunos />} />
 				<Route path="/edicaoaluno/:id" element={<EdicaoAluno />} />
 				<Route path="/cadastroboletos" element={<CadastroBoletos />} />
+				<Route path="/configuracao" element={<Configuracao />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/about" element={<h1>About Page</h1>} />
 			</Routes>
