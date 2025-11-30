@@ -79,9 +79,10 @@ export default function CadastroAlunos() {
 								required
 							/>
 						</div>
-						<div className="button-container">
-							<button className="btn-submit">Cadastrar 💾</button>
-						</div>
+					</div>
+					<br />
+					<div>
+						<button className="btn-submit">Cadastrar 💾</button>
 					</div>
 				</div>
 			</form>

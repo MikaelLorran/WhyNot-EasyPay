@@ -39,11 +39,11 @@ export default function ControleBoletos() {
 						<input
 							type="text"
 							id="searchBoleto"
-							placeholder="🔍 Digite o Nome do aluno..."
+							placeholder="🔍 Digite o nome do aluno..."
 						/>
 					</div>
 					<div className="filter-group">
-						<button onClick={() => navigate("/cadastroalunos")}>
+						<button onClick={() => navigate("/cadastroboletos")}>
 							Cadastrar Novo Boleto
 						</button>
 					</div>

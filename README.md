@@ -24,7 +24,6 @@ Como executar:
 
    ```bash
    npm install
-   npm install @whiskeysockets/baileys pino
 
    ```
 
