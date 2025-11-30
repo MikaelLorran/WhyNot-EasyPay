@@ -22,8 +22,8 @@ export function getBoletoById(id: number) {
 	return boletoRepository.findById(id);
 }
 
-export function pagarBoleto(id: number) {
-	return boletoRepository.marcarComoPago(id, new Date());
+export function pagarBoleto(id: number, dataPagamento: Date) {
+	return boletoRepository.marcarComoPago(id, dataPagamento);
 }
 
 export async function deleteBoleto(id: number) {
@@ -103,9 +103,9 @@ export async function sendBeforeExpirationMessage() {
 					aluno.nome
 				}, passando para lembrar que seu boleto com titulo "${
 					boleto.titulo
-				}" está prestes a vencer. 
-				Valor do boleto: R$${boleto.valor.toFixed(2)}.
-				 Vencimento em: ${boleto.vencimento.toLocaleDateString("pt-Br")}.`,
+				}" está prestes a vencer. Valor do boleto: R$${boleto.valor.toFixed(
+					2
+				)}. Vencimento em: ${boleto.vencimento.toLocaleDateString("pt-Br")}.`,
 			};
 			try {
 				await whatsappService.sendMessage(aluno.telefone, contentText);
@@ -168,10 +168,11 @@ export async function sendAfterExpirationMessage() {
 					aluno.nome
 				}, passando para avisar que seu boleto com título "${
 					boleto.titulo
-				}" está vencido! 
-				Valor do boleto: R$${boleto.valor.toFixed(2)}.
-				 Vencimento em: ${boleto.vencimento.toLocaleDateString("pt-Br")}.
-				Por favor, entre em contato para regularizar, antes que a plataforma seja bloqueada.`,
+				}" está vencido! Valor do boleto: R$${boleto.valor.toFixed(
+					2
+				)}. Vencimento em: ${boleto.vencimento.toLocaleDateString(
+					"pt-Br"
+				)}. Por favor, entre em contato para regularizar, antes que a plataforma seja bloqueada.`,
 			};
 			try {
 				await whatsappService.sendMessage(aluno.telefone, contentText);

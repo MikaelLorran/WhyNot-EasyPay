@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 interface Aluno {
 	id: number;
 	nome: string;
@@ -9,9 +10,22 @@ interface Aluno {
 	telefone: string;
 }
 
+interface Boleto {
+	id: number;
+	valor: number;
+	finalizado: boolean;
+	vencimento: string;
+	alunoId: number;
+	aluno: {
+		nome: string;
+		cpf: string;
+	};
+}
+
 export default function ControleAlunos() {
 	const navigate = useNavigate();
 	const [alunos, setAlunos] = useState<Aluno[]>([]);
+	const [boletos, setBoletos] = useState<Boleto[]>([]);
 
 	useEffect(() => {
 		const carregarAlunos = async () => {
@@ -22,11 +36,48 @@ export default function ControleAlunos() {
 				console.error("Erro ao carregar alunos:", error);
 			}
 		};
+
+		const carregarBoletos = async () => {
+			try {
+				const response = await api.get("/boletos");
+				setBoletos(response.data);
+			} catch (error) {
+				console.error("Erro ao carregar boletos:", error);
+			}
+		};
+
+		carregarBoletos();
 		carregarAlunos();
 	}, []);
+
+	const excluirAluno = async (id: number) => {
+		if (window.confirm("Tem certeza que deseja excluir este aluno?")) {
+			if (
+				boletos.some(
+					(boleto) =>
+						boleto.aluno && boleto.alunoId === id && !boleto.finalizado
+				)
+			) {
+				console.error("Existem boletos pendentes para este aluno.");
+				toast.error(
+					"Não é possível excluir o aluno. Existem boletos pendentes associados a ele."
+				);
+				return;
+			}
+			try {
+				await api.delete(`/alunos/${id}`);
+				toast.success("Aluno excluído com sucesso!");
+				setAlunos(alunos.filter((aluno) => aluno.id !== id));
+			} catch (error) {
+				console.error("Erro ao excluir aluno:", error);
+				toast.error("Erro ao excluir aluno.");
+			}
+		}
+	};
+
 	return (
 		<div className="container">
-			<h1>Controle de Alunos</h1>
+			<h1 className="title">Controle de Alunos</h1>
 
 			<div className="control-card">
 				<div className="filters">
@@ -65,17 +116,19 @@ export default function ControleAlunos() {
 									<td>{aluno.cpf}</td>
 									<td>
 										<div className="actions">
-											<button className="btn-action btn-edit" title="Editar">
+											<button
+												className="btn-action btn-edit"
+												title="Editar"
+												onClick={() => navigate(`/edicaoaluno/${aluno.id}`)}
+											>
 												✏️
 											</button>
-											<button className="btn-action btn-delete" title="Excluir">
-												🗑️
-											</button>
 											<button
-												className="btn-action btn-view"
-												title="Visualizar"
+												className="btn-action btn-delete"
+												title="Excluir"
+												onClick={() => excluirAluno(aluno.id)}
 											>
-												👁️
+												🗑️
 											</button>
 										</div>
 									</td>
@@ -85,17 +138,6 @@ export default function ControleAlunos() {
 					</table>
 				</div>
 			</div>
-
-			<button className="btn-back">
-				<svg viewBox="0 0 20 20">
-					<path
-						fill-rule="evenodd"
-						d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-						clip-rule="evenodd"
-					/>
-				</svg>
-			</button>
-
 			<footer>© 2025 Why Not? Institute. Todos os direitos reservados.</footer>
 		</div>
 	);

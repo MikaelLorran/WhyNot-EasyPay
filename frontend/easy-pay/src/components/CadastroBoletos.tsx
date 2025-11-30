@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 interface Aluno {
 	id: number;
@@ -41,19 +42,19 @@ export default function CadastroBoletos() {
 				valor: parseFloat(valor),
 				alunoId: parseInt(alunoId),
 			});
-			alert("Boleto cadastrado com sucesso!");
+			toast.success("Boleto cadastrado com sucesso!");
 			setTimeout(() => {
 				navigate("/boletos");
 			}, 1500);
 		} catch (error) {
 			console.error("Erro ao cadastrar boleto:", error);
-			alert("Erro ao cadastrar boleto. Por favor, tente novamente.");
+			toast.error("Erro ao cadastrar boleto. Por favor, tente novamente.");
 		}
 	};
 
 	return (
 		<div className="container">
-			<h1>Cadastro de Boletos</h1>
+			<h1 className="title">Cadastro de Boletos</h1>
 
 			<form onSubmit={handleSubmit}>
 				<div className="content-wrapper">

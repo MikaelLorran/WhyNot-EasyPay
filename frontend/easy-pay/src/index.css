@@ -28,17 +28,18 @@ body {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
 		"Helvetica Neue", Arial, sans-serif;
 	background: var(--color-background-default);
-
-	/* REMOVER: display: flex; */
-	/* REMOVER: align-items: center; */
-	/* REMOVER: justify-content: center; */
-
 	min-width: 320px;
 	min-height: 100vh;
 	padding: 2rem;
 	margin: 0;
 	/* MODIFICAR: Use o tamanho exato da sidebar para o padding-left */
-	padding-left: 220px;
+	padding-left: 230px;
+}
+
+.title {
+	font-family: "Inter", sans-serif;
+	font-weight: 700;
+	text-align: center;
 }
 
 a {
@@ -166,7 +167,6 @@ label svg {
 .container {
 	width: 100%;
 	max-width: 1200px;
-	/* ADICIONAR: Centraliza o container no espaço disponível (entre a sidebar e a borda direita) */
 	margin: 0 auto;
 }
 
@@ -182,7 +182,7 @@ label svg {
 
 .header {
 	text-align: center;
-	margin-bottom: 3rem;
+	margin-bottom: 2rem;
 }
 
 .header h1 {
@@ -414,6 +414,17 @@ tbody tr:hover {
 	gap: 1.5rem;
 }
 
+.btn-grid {
+	grid-template-columns: repeat(2, 1fr);
+	display: grid;
+	gap: 1rem;
+}
+
+.btn-group {
+	display: flex;
+	flex-direction: column;
+}
+
 .form-group {
 	display: flex;
 	flex-direction: column;
@@ -461,7 +472,7 @@ tbody tr:hover {
 .btn-submit,
 .btn-search {
 	width: 100%;
-	background: #e5e7eb;
+	background: #91e6b1;
 	color: #374151;
 	font-weight: 500;
 	padding: 0.75rem 1.5rem;
@@ -478,14 +489,34 @@ tbody tr:hover {
 
 .btn-submit:hover,
 .btn-search:hover {
-	background: #d1d5db;
+	background: #08df5a;
+	color: #374151;
 }
 
-.btn-submit svg,
-.btn-search svg {
-	width: 1.25rem;
-	height: 1.25rem;
-	fill: currentColor;
+.btn-cancel {
+	width: 100%;
+	background: #e69191;
+	color: #374151;
+	font-weight: 500;
+	padding: 0.75rem 1.5rem;
+	border: none;
+	border-radius: 0.5rem;
+	font-size: 1rem;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	transition: background 0.2s;
+}
+
+.btn-cancel:hover {
+	background: #d32020;
+	color: #dde0e6;
+}
+
+.btn-search:hover {
+	background: #d1d5db;
 }
 
 .search-card {
@@ -612,15 +643,17 @@ footer {
 
 .container-login {
 	width: 450px;
-	height: 400px;
+	height: auto;
 	background: var(--color-background-card);
 	border-radius: 1rem;
 	box-shadow: var(--color-shadow-card);
 	padding: 2rem;
 	text-align: center;
+	margin: auto;
 }
 
 #btn-log {
+	margin-top: 20px;
 	background: var(--color-background-default);
 	width: 110px;
 	box-shadow: var(--color-shadow-card);
@@ -637,15 +670,16 @@ footer {
 }
 
 .sidebar {
-	width: 220px; /* Mantendo a largura definida */
+	width: 200px;
 	height: 100vh;
 	background: white;
-	border-right: 3px solid var(--color-text-primary);
-	padding: 0;
+	padding-top: 20px;
+	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.9);
+	padding: 0px;
 	position: fixed;
-	left: 0; /* Ajustando de '0%' para '0' */
-	top: 0; /* Ajustando de '0%' para '0' */
-	z-index: 100; /* Adiciona um z-index alto para garantir que ela fique por cima */
+	left: 0;
+	top: 0;
+	z-index: 1000;
 }
 
 .sidebar ul {
@@ -656,6 +690,10 @@ footer {
 	flex-direction: column;
 	height: 100%;
 	gap: 0;
+}
+
+.sidebar ul li:not(:last-child) .cardnav {
+	border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .cardnav {
@@ -677,6 +715,110 @@ footer {
 	color: white;
 	transform: none;
 }
-.sidebar ul li:not(:last-child) .cardnav {
-	border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+.cardnav-logout {
+	background: white;
+	color: rgba(255, 0, 0, 0.644);
+	font-weight: 600;
+	border-radius: 0;
+	padding: 15px 20px;
+	text-align: left;
+	cursor: pointer;
+	font-size: 16px;
+	display: block;
+	width: 100%;
+	transition: background 0.3s, color 0.3s;
+	position: absolute;
+	bottom: 0;
+}
+
+.cardnav-logout:hover {
+	background: rgba(255, 0, 0, 0.644);
+	color: white;
+	transform: none;
+}
+
+.modal.show {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1050;
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	outline: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.modal-title {
+	font-family: "Inter", sans-serif;
+	color: black;
+	font-size: 1.25rem;
+	font-weight: 700;
+}
+
+.modal-dialog {
+	position: relative;
+	width: auto;
+	margin: 1.75rem auto;
+	pointer-events: none;
+}
+
+.modal-content {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	pointer-events: auto;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 0.3rem;
+	outline: 0;
+	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.175);
+}
+
+.modal-header,
+.modal-footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1rem;
+	border-bottom: 1px solid #dee2e6;
+}
+
+.modal-footer {
+	border-top: 1px solid #dee2e6;
+	border-bottom: none;
+	justify-content: flex-end;
+	gap: 0.5rem;
+}
+
+.modal-body {
+	position: relative;
+	flex: 1 1 auto;
+	padding: 1rem;
+}
+
+.btn-close {
+	background: transparent;
+	border: 0;
+	font-size: 1.5rem;
+	cursor: pointer;
+	opacity: 0.5;
+	transition: opacity 0.15s ease-in-out;
+}
+
+.btn-close:hover {
+	opacity: 0.75;
+}
+
+@media (min-width: 576px) {
+	.modal-dialog {
+		max-width: 500px;
+	}
 }

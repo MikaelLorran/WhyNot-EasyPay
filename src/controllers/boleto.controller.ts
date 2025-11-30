@@ -44,11 +44,11 @@ export async function criarBoleto(req: express.Request, res: express.Response) {
 
 		if (aluno.telefone) {
 			const contentText = {
-				text: `Olá ${aluno.nome}, seu boleto com titulo "${boleto.titulo}" foi gerado hoje. Valor do boleto: R$${boleto.valor.toFixed(
+				text: `Olá ${aluno.nome}, seu boleto com titulo "${
+					boleto.titulo
+				}" foi gerado hoje. Valor do boleto: R$${boleto.valor.toFixed(
 					2
-				)}. Vencimento em: ${boleto.vencimento.toLocaleDateString(
-					"pt-Br"
-				)}.` 
+				)}. Vencimento em: ${boleto.vencimento.toLocaleDateString("pt-Br")}.`,
 			};
 			try {
 				await whatsappService.sendMessage(aluno.telefone, contentText);
@@ -85,7 +85,10 @@ export async function getBoletoById(
 
 export async function pagarBoleto(req: express.Request, res: express.Response) {
 	const { id } = req.params;
-	const boleto = await boletoService.pagarBoleto(Number(id));
+	const dataPagamento = req.body.dataPagamento
+		? new Date(req.body.dataPagamento)
+		: new Date();
+	const boleto = await boletoService.pagarBoleto(Number(id), dataPagamento);
 	res.status(200).json(boleto);
 }
 

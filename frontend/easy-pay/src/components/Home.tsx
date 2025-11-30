@@ -6,51 +6,29 @@ export default function Home() {
 	return (
 		<div className="container">
 			<div className="header">
-				<h1>Why Not? Institute</h1>
-				<p className="subtitle">Sistema de Gerenciamento Acadêmico</p>
+				<h1 className="title">Why Not? Institute</h1>
+				<p className="subtitle">Sistema de Gerenciamento de Pagamentos</p>
 			</div>
-
-			<div className="cards-grid">
-				<a onClick={() => navigate("/cadastroalunos")} className="card">
-					<div className="card-icon">👥</div>
-					<h2 className="card-title">Cadastro de Usuários</h2>
-					<p className="card-description">
-						Registre novos alunos no sistema com todas as informações
-						necessárias
-					</p>
-				</a>
-
-				<a onClick={() => navigate("/cadastroboletos")} className="card">
-					<div className="card-icon">📄</div>
-					<h2 className="card-title">Cadastro de Boletos</h2>
-					<p className="card-description">
-						Gerencie boletos de pagamento e anexe comprovantes
-					</p>
-				</a>
-			</div>
-
 			<div className="management-section">
-				<h3 className="section-title">Controle e Gerenciamento</h3>
 				<div className="management-grid">
 					<a onClick={() => navigate("/alunos")} className="management-card">
 						<div className="management-icon">🎓</div>
 						<h3 className="management-title">Controle de Alunos</h3>
 					</a>
 
-					<a
-						onClick={() => navigate("/controleboletos")}
-						className="management-card"
-					>
+					<a onClick={() => navigate("/boletos")} className="management-card">
 						<div className="management-icon">💳</div>
-						<h3 className="management-title">Controle de Pagamentos</h3>
+						<h3 className="management-title">Controle de Boletos</h3>
 					</a>
 
-					<a href="#" className="management-card">
-						<div className="management-icon">📊</div>
-						<h3 className="management-title">Relatório (PowerBI)</h3>
+					<a className="management-card" onClick={() => navigate("/")}>
+						<div className="management-icon">⚙️</div>
+						<h3 className="management-title">Configurar envios</h3>
 					</a>
 				</div>
 			</div>
+			<br />
+			<br />
 			<footer>© 2025 Why Not? Institute. Todos os direitos reservados.</footer>
 		</div>
 	);

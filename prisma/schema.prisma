@@ -39,3 +39,10 @@ model Usuario {
   username  String   @unique
   password  String
 }
+
+model Configuracao {
+  id                Int      @id @default(autoincrement())
+  diasAntesVencimento Int
+  diasAposVencimento  Int
+  frequenciaVerificacao  String
+}

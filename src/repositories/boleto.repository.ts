@@ -76,11 +76,9 @@ export async function findBeforeDueBoletos(currentDate: Date) {
 }
 
 export async function findAfterDueBoletos(currentDate: Date) {
-	const threeDaysAfter = new Date(currentDate);
-	threeDaysAfter.setDate(threeDaysAfter.getDate() + 3);
 	return Boleto.findMany({
 		where: {
-			vencimento: { gte: currentDate, lte: threeDaysAfter },
+			vencimento: { lte: currentDate },
 			finalizado: false,
 		},
 		include: { aluno: true },

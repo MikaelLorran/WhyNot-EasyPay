@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-export default function CadastroAlunos() {
+export default function AlterarAluno() {
 	const [nome, setNome] = useState("");
 	const [email, setEmail] = useState("");
 	const [telefone, setTelefone] = useState("");
@@ -11,15 +11,30 @@ export default function CadastroAlunos() {
 
 	const navigate = useNavigate();
 
+	useEffect(() => {
+		const carregarAluno = async () => {
+			try {
+				const response = await api.get(
+					`/alunos/${window.location.pathname.split("/").pop()}`
+				);
+				setNome(response.data.nome);
+				setEmail(response.data.email);
+				setTelefone(response.data.telefone);
+				setCpf(response.data.cpf);
+			} catch (error) {
+				console.error("Erro ao carregar aluno:", error);
+			}
+		};
+
+		carregarAluno();
+	}, []);
+
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		const CpfExiste = await consultaCpf(cpf);
-		if (CpfExiste == cpf) {
-			toast.info("CPF já cadastrado no sistema.");
-			return;
-		}
+		const id = window.location.pathname.split("/").pop();
+
 		try {
-			await api.post("/alunos", {
+			await api.put(`/aluno/${id}`, {
 				nome,
 				email,
 				telefone,
@@ -35,23 +50,9 @@ export default function CadastroAlunos() {
 		}
 	};
 
-	const consultaCpf = async (cpf: string) => {
-		try {
-			const response = await api.get(`/alunos/cpf/${cpf}`);
-			const cpfAluno = response.data;
-			if (cpfAluno) {
-				return cpfAluno.cpf;
-			}
-
-			return null;
-		} catch (error) {
-			console.error("Erro ao consultar CPF:", error);
-		}
-	};
-
 	return (
 		<div className="container">
-			<h1 className="title">Cadastro de Alunos</h1>
+			<h1 className="title">Alteração de Aluno</h1>
 
 			<form onSubmit={handleSubmit}>
 				<div className="form-card">
@@ -100,8 +101,14 @@ export default function CadastroAlunos() {
 						</div>
 					</div>
 					<br />
-					<div>
-						<button className="btn-submit">Cadastrar 💾</button>
+					<div className="btn-grid">
+						<button className="btn-submit btn-group">Salvar</button>
+						<a
+							className="btn-cancel btn-group"
+							onClick={() => navigate("/alunos")}
+						>
+							Cancelar
+						</a>
 					</div>
 				</div>
 			</form>

@@ -7,6 +7,7 @@ import boletoRoutes from "./routes/boleto.routes.js";
 import usuarioRoutes from "./routes/usuario.route.js";
 
 cronSchedule.scheduleBoletoBeforeExpirationCheck();
+cronSchedule.scheduleBoletoAfterExpirationCheck();
 
 const app = express();
 const corsOptions = {
