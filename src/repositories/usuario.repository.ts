@@ -31,3 +31,7 @@ export function deleteUsuario(id: number) {
 		where: { id },
 	});
 }
+
+export function loginByUsername(username: string, password: string) {
+	return Usuario.findUnique({ where: { username, password } });
+}

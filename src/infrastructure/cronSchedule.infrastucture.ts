@@ -50,7 +50,7 @@ export async function scheduleBoletoAfterExpirationCheck() {
 		);
 		try {
 			await boletoService.sendAfterExpirationMessage();
-			console.log("Tarefa de verificação de boletos vencidos.");
+			console.log("Tarefa de verificação de boletos vencidos concluída.");
 		} catch (error) {
 			console.error("Erro durante a verificação de boletos a vencer:", error);
 		}

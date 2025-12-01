@@ -82,14 +82,6 @@ export default function ControleAlunos() {
 			<div className="control-card">
 				<div className="filters">
 					<div className="filter-group">
-						<input
-							type="text"
-							id="searchAluno"
-							placeholder="🔍 Digite o nome do aluno..."
-						/>
-					</div>
-
-					<div className="filter-group">
 						<button onClick={() => navigate("/cadastroalunos")}>
 							Cadastrar Novo Aluno
 						</button>

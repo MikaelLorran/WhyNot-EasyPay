@@ -38,9 +38,9 @@ export async function getUsuarioByUsername(
 	const username = req.params.username as string;
 	const usuario = await usuarioService.getUsuarioByUsername(username);
 
-	if (!usuario)
+	if (!usuario) {
 		return res.status(404).json({ message: "Usuario não encontrado" });
-
+	}
 	res.status(200).json(usuario);
 }
 
@@ -64,4 +64,18 @@ export async function deleteUsuario(
 	const { id } = req.params;
 	await usuarioService.deleteUsuario(Number(id));
 	res.status(204).send();
+}
+
+export async function loginByUsername(
+	req: express.Request,
+	res: express.Response
+) {
+	const { username, password } = req.body;
+	const usuario = await usuarioService.loginByUsername(username, password);
+
+	if (!usuario) {
+		return res.status(404).json({ message: "Usuario não encontrado" });
+	}
+
+	res.status(200).json(usuario);
 }

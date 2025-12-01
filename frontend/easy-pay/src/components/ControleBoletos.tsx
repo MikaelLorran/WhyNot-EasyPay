@@ -69,13 +69,6 @@ export default function ControleBoletos() {
 			<div className="control-card">
 				<div className="filters">
 					<div className="filter-group">
-						<input
-							type="text"
-							id="searchBoleto"
-							placeholder="🔍 Digite o nome do aluno..."
-						/>
-					</div>
-					<div className="filter-group">
 						<button onClick={() => navigate("/cadastroboletos")}>
 							Cadastrar Novo Boleto
 						</button>
@@ -112,7 +105,11 @@ export default function ControleBoletos() {
 									</td>
 									<td>
 										<div className="actions">
-											<button className="btn-action btn-edit" title="Editar">
+											<button
+												className="btn-action btn-edit"
+												title="Editar"
+												onClick={() => navigate(`/edicaoboleto/${boleto.id}`)}
+											>
 												✏️
 											</button>
 											<button

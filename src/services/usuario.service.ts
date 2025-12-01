@@ -37,3 +37,13 @@ export async function deleteUsuario(id: number) {
 	}
 	return usuarioRepository.deleteUsuario(id);
 }
+
+export async function loginByUsername(username: string, password: string) {
+	const response = await usuarioRepository.loginByUsername(username, password);
+
+	if (!response) {
+		throw new Error("Usuário não encontrado");
+	}
+
+	return usuarioRepository.loginByUsername(username, password);
+}

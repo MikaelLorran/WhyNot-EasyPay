@@ -121,6 +121,10 @@ select {
 	color: black;
 }
 
+input:disabled {
+	background-color: rgb(212, 210, 210);
+}
+
 input:focus,
 input:focus-visible,
 textarea:focus,
@@ -821,4 +825,9 @@ footer {
 	.modal-dialog {
 		max-width: 500px;
 	}
+}
+
+.img-icon {
+	padding: 10px 0px;
+	width: 130px;
 }
